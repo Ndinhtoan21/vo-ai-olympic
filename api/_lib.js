@@ -19,21 +19,17 @@ async function redis(...cmd) {
 }
 
 const sha = (s) => crypto.createHash('sha256').update(s).digest('hex');
-const pinHash = (pin, salt) => sha(`vo-ai-olympic|pin|${salt}|${pin}`);
-const tokenFor = (hash) => sha(`vo-ai-olympic|token|${hash}`);
+// Fixed teacher PIN lives only in the Vercel env var TEACHER_PIN (never in the repo).
+const PIN = String(process.env.TEACHER_PIN || '');
+// Token is an HMAC keyed with a server-only secret, so it cannot be forged by guessing the PIN offline.
+const SECRET = process.env.TOKEN_SECRET || TOKEN || 'dev';
+const teacherToken = () => crypto.createHmac('sha256', SECRET).update('vo-ai-olympic|teacher|' + PIN).digest('hex');
+const pinOk = (pin) => !!PIN && /^\d{1,12}$/.test(pin) && pin.length === PIN.length && crypto.timingSafeEqual(Buffer.from(pin), Buffer.from(PIN));
 
-async function getPin() {
-  const raw = await redis('GET', P + 'pin');
-  return raw ? JSON.parse(raw) : null; // {salt, hash}
-}
-
-// Teacher token check: token is derived from the stored PIN hash, so changing the PIN logs everyone out.
 async function isTeacher(req) {
   const tok = String(req.headers['x-teacher-token'] || '');
-  if (!tok) return false;
-  const p = await getPin();
-  if (!p) return false;
-  const want = tokenFor(p.hash);
+  if (!tok || !PIN) return false;
+  const want = teacherToken();
   return tok.length === want.length && crypto.timingSafeEqual(Buffer.from(tok), Buffer.from(want));
 }
 
@@ -59,4 +55,4 @@ function body(req) {
   try { return JSON.parse(req.body || '{}'); } catch (e) { return {}; }
 }
 
-module.exports = { redis, configured, P, sha, pinHash, tokenFor, getPin, isTeacher, limited, send, body, crypto };
+module.exports = { redis, configured, P, sha, PIN, teacherToken, pinOk, isTeacher, limited, send, body, crypto };

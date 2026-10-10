@@ -18,7 +18,7 @@
   --red:#D93246; --red-soft:#FFE5E8; --green:#0C8459; --green-soft:#DCF4E9; --amber:#A96500; --amber-soft:#FFF0D1;
   --c1:#5B34E0; --c2:#EF6A1A; --c3:#0C8459; --c4:#C08600; --c5:#1F78DD;
   --pink:#E2407F; --teal:#0C938F; --sky:#2B83F0; --sun:#FFC53D; --coral:#FF6A55;
-  --p0:#FF6A55; --pA:#2B83F0; --pB:#5B34E0; --pC:#0C938F; --pD:#E39400; --pE:#E2407F;
+  --p0:#FF6A55; --pA:#2B83F0; --pB:#5B34E0; --pC:#0C938F; --pD:#E39400; --pE:#E2407F; --pF:#3A9A3E;
   --shadow:0 1px 2px rgba(60,30,120,.06),0 6px 18px rgba(60,30,120,.07);
   --f-display:'Baloo 2','Be Vietnam Pro',system-ui,sans-serif;
   --f-body:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
@@ -34,7 +34,7 @@
     --red:#FF7B87; --red-soft:#3D2135; --green:#5ED8A2; --green-soft:#163A30; --amber:#FFC65C; --amber-soft:#3B301F;
     --c1:#A98CFF; --c2:#FF9C5B; --c3:#5ED8A2; --c4:#FFC65C; --c5:#7CB7FF;
     --pink:#FF7DB2; --teal:#4FD5CF; --sky:#7CB7FF; --sun:#FFD166; --coral:#FF8B79;
-    --p0:#FF8B79; --pA:#7CB7FF; --pB:#A98CFF; --pC:#4FD5CF; --pD:#FFC65C; --pE:#FF7DB2;
+    --p0:#FF8B79; --pA:#7CB7FF; --pB:#A98CFF; --pC:#4FD5CF; --pD:#FFC65C; --pE:#FF7DB2; --pF:#7DD87F;
     --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.25);
     color-scheme:dark;
   }
@@ -46,7 +46,7 @@
   --red:#FF7B87; --red-soft:#3D2135; --green:#5ED8A2; --green-soft:#163A30; --amber:#FFC65C; --amber-soft:#3B301F;
   --c1:#A98CFF; --c2:#FF9C5B; --c3:#5ED8A2; --c4:#FFC65C; --c5:#7CB7FF;
   --pink:#FF7DB2; --teal:#4FD5CF; --sky:#7CB7FF; --sun:#FFD166; --coral:#FF8B79;
-  --p0:#FF8B79; --pA:#7CB7FF; --pB:#A98CFF; --pC:#4FD5CF; --pD:#FFC65C; --pE:#FF7DB2;
+  --p0:#FF8B79; --pA:#7CB7FF; --pB:#A98CFF; --pC:#4FD5CF; --pD:#FFC65C; --pE:#FF7DB2; --pF:#7DD87F;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.25);
   color-scheme:dark;
 }
@@ -495,6 +495,8 @@ h1,h2,h3{letter-spacing:-.005em}
 .before{background:linear-gradient(135deg,var(--accent-soft),color-mix(in srgb,var(--sky) 14%,var(--surface)))}
 .hist th{font-family:var(--f-body)}
 .kq{border-radius:16px}
+/* code blocks */
+.prose pre{font:.82rem/1.6 var(--f-mono);background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow-x:auto;white-space:pre;margin:0 0 .8em;max-width:100%}
 /* role gate */
 .gate{position:fixed;inset:0;z-index:100;overflow:auto;display:grid;place-items:center;padding:calc(20px + env(safe-area-inset-top,0px)) 16px calc(20px + env(safe-area-inset-bottom,0px));background:
   radial-gradient(600px 400px at 10% 10%,color-mix(in srgb,var(--sun) 35%,transparent),transparent 70%),
@@ -526,6 +528,7 @@ details.more summary{cursor:pointer;font-weight:600;color:var(--muted)}
 .who-line b{color:var(--accent)}
 .cls-tag{display:inline-block;padding:1px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:.82rem}
 .stu-detail td{background:var(--surface-2)}
+.ro span{text-transform:none;letter-spacing:0;font-size:.76rem}
 </style>
 </head>
 <body>
@@ -645,17 +648,18 @@ function warnIcon(){ const s=h('span',{html:'<svg viewBox="0 0 24 24" fill="none
 const PARTS=[
  {id:'0',name:'Làm quen với AI',intro:'AI là gì, dữ liệu trông như thế nào, máy học ra sao. Học phần này trước khi gặp các thuật toán và thuật ngữ chuyên môn.'},
  {id:'A',name:'Nền tảng toán',intro:'Vector, đạo hàm, xác suất và logic: những công cụ toán mà mọi thuật toán phía sau đều dùng.'},
- {id:'B',name:'Học máy',intro:'Các thuật toán kinh điển: hồi quy, k-NN, cây quyết định, k-means, cùng cách đánh giá một mô hình tốt hay dở.'},
- {id:'C',name:'Học sâu',intro:'Mạng nơ-ron: từ một nơ-ron đơn lẻ đến CNN cho ảnh và Transformer cho văn bản.'},
+ {id:'B',name:'Học máy',intro:'Các thuật toán kinh điển: hồi quy, k-NN, cây quyết định, SVM, k-means, PCA; cách xử lý dữ liệu và đánh giá một mô hình tốt hay dở.'},
+ {id:'C',name:'Học sâu',intro:'Mạng nơ-ron: từ một nơ-ron đơn lẻ đến CNN cho ảnh, RNN và Transformer cho chuỗi văn bản.'},
  {id:'D',name:'Tìm kiếm và ra quyết định',intro:'AI cổ điển: tìm đường đi ngắn nhất, và cân bằng giữa thử cái mới với dùng cái đã biết.'},
- {id:'E',name:'Kernel và đạo đức AI',intro:'Phát hiện điều bất thường, bảo vệ riêng tư và giữ công bằng khi dùng AI.'}];
+ {id:'E',name:'Kernel và đạo đức AI',intro:'Phát hiện điều bất thường, bảo vệ riêng tư và giữ công bằng khi dùng AI.'},
+ {id:'F',name:'Thực hành cho Vòng 2',intro:'Python, NumPy, pandas, scikit-learn và cách dùng 5 giờ làm bài trên máy không có internet.'}];
 const TOPICS=[
 {id:'ai-la-gi',part:'0',title:'AI là gì?',
  one:'AI là cách làm cho máy tính làm được những việc trước đây cần trí thông minh của con người.',
  why:'Biết bức tranh toàn cảnh trước khi đi vào từng thuật toán.',pre:'Không cần kiến thức trước.',
  idea:'<p><b>Trí tuệ nhân tạo (AI)</b> là một lĩnh vực rộng: máy chơi cờ, máy dịch, xe tự lái, trợ lý ảo. Có hai cách chính để làm ra một hệ thống "thông minh".</p><p><b>Cách 1: viết luật bằng tay.</b> Người lập trình nghĩ ra mọi quy tắc, ví dụ: thấy chữ "trúng thưởng" thì là thư rác. Cách này dễ hiểu nhưng không thể viết hết mọi trường hợp.</p><p><b>Cách 2: cho máy học từ dữ liệu.</b> Đưa cho máy hàng nghìn thư đã đánh dấu "rác" hay "không rác", máy tự tìm ra quy luật. Đây là <b>học máy</b> (machine learning). <b>Học sâu</b> (deep learning) là một nhánh của học máy dùng mạng nơ-ron nhiều lớp; nó đứng sau ChatGPT, nhận diện khuôn mặt, dịch máy.</p>',
  life:'Điện thoại tự gom ảnh theo khuôn mặt, YouTube gợi ý video, Google Dịch, bản đồ tìm đường tránh tắc đều là AI.',
- rem:['AI ⊃ học máy ⊃ học sâu (vòng to chứa vòng nhỏ)','Học máy: máy tự tìm quy luật từ dữ liệu, thay vì người viết luật','Học sâu: học máy dùng mạng nơ-ron nhiều lớp','Mô hình (model): thứ máy học được; nhận đầu vào, đưa ra dự đoán','AI hiện nay là AI hẹp: giỏi một việc, không hiểu biết như con người'],
+ rem:['AI ⊃ học máy ⊃ học sâu (vòng to chứa vòng nhỏ)','Học máy: máy tự tìm quy luật từ dữ liệu, thay vì người viết luật','Học sâu: học máy dùng mạng nơ-ron nhiều lớp','Mô hình (model): thứ máy học được; nhận đầu vào, đưa ra dự đoán','Phần lớn AI hiện nay là AI hẹp: giỏi trong phạm vi được huấn luyện, không hiểu biết toàn diện như con người'],
  traps:['Chương trình chạy tự động chưa chắc là học máy: máy tính bỏ túi không học gì cả.','Học sâu là một phần của học máy, không phải ngược lại.'],
  tryit:'Đọc từng tình huống và chọn: máy đang làm theo luật viết sẵn, hay đã học từ dữ liệu?',demo:demoAIorNot},
 {id:'du-lieu',part:'0',title:'Dữ liệu, đặc trưng và nhãn',
@@ -685,7 +689,7 @@ const TOPICS=[
 {id:'ban-do',part:'0',title:'Bản đồ kỳ thi và cách ôn',
  one:'Biết đề thi gồm gì và các bài học nối với nhau thế nào thì ôn sẽ đỡ mơ hồ.',
  why:'Biết thi gì và nên ôn theo thứ tự nào.',pre:'Không cần kiến thức trước.',
- idea:'<p><b>Vòng 1 (Chủ nhật 18/10/2026):</b> thi viết trên giấy 180 phút, 100 câu trắc nghiệm song ngữ Việt–Anh, có câu nhiều đáp án đúng, về AI và học máy, toán logic, đạo đức AI. 100 bạn điểm cao nhất vào Vòng 2.</p><p><b>Vòng 2 (10/01/2027, Hà Nội):</b> 5 giờ trên laptop cá nhân, không internet, không công cụ AI gợi ý code. Ban tổ chức cho dữ liệu và mô hình nền; thí sinh huấn luyện và nộp dự đoán.</p><p>Bản đồ dưới đây xếp các bài theo thứ tự nên học. Mỗi phần dựa vào phần trước: làm quen → toán nền tảng → học máy → học sâu → tìm kiếm và ra quyết định → kernel và đạo đức AI.</p>',
+ idea:'<p><b>Vòng 1 (Chủ nhật 18/10/2026):</b> thi viết trên giấy 180 phút, 100 câu trắc nghiệm song ngữ Việt–Anh, có câu nhiều đáp án đúng, về AI và học máy, toán logic, đạo đức AI. 100 bạn điểm cao nhất vào Vòng 2.</p><p><b>Vòng 2 (10/01/2027, Hà Nội):</b> 5 giờ trên laptop cá nhân, không internet, không công cụ AI gợi ý code. Ban tổ chức cho dữ liệu và mô hình nền; thí sinh huấn luyện và nộp dự đoán.</p><p>Bản đồ dưới đây xếp các bài theo thứ tự nên học. Mỗi phần dựa vào phần trước: làm quen → toán nền tảng → học máy → học sâu → tìm kiếm và ra quyết định → kernel và đạo đức AI → thực hành cho Vòng 2.</p>',
  life:'Trước một chuyến đi xa, ai cũng xem bản đồ: biết điểm đến, các chặng, chặng nào khó để chuẩn bị trước.',
  rem:['Vòng 1: 100 câu / 180 phút ≈ 1,8 phút một câu','Câu nhiều đáp án: xét từng phương án như một câu Đúng/Sai','Làm câu chắc chắn trước, đánh dấu câu tính dài để quay lại','Đề song ngữ: học thuật ngữ tiếng Anh trong Từ điển','Vòng 2: luyện viết code không cần internet, cài sẵn thư viện'],
  traps:['Đừng học thuộc công thức mà không hiểu: đề hỏi nhiều về ý nghĩa và trường hợp đặc biệt.','Đừng bỏ phần đạo đức AI: có cả câu tính toán (riêng tư vi phân, công bằng).'],
@@ -730,9 +734,16 @@ const TOPICS=[
  one:'Muốn đoán một điểm mới thuộc nhóm nào, hỏi k điểm gần nó nhất rồi theo số đông.',
  idea:'<p>k-NN không cần "học" trước, chỉ cần nhớ dữ liệu. Khi có điểm mới, tính khoảng cách đến mọi điểm, lấy k điểm gần nhất và bỏ phiếu.</p><p><b>k nhỏ</b> (k = 1): tin vào một hàng xóm, dễ bị điểm nhiễu đánh lừa, ranh giới gồ ghề (overfit). <b>k lớn</b>: kết quả mượt nhưng bỏ qua chi tiết (underfit).</p>',
  life:'Mới chuyển trường, muốn biết quán ăn nào ngon: hỏi 5 bạn ngồi gần nhất rồi nghe theo số đông.',
- rem:['Có giám sát: dữ liệu có nhãn','Chọn k lẻ để tránh hòa phiếu (2 lớp)','PHẢI chuẩn hóa đặc trưng trước khi tính khoảng cách','Dự đoán chậm: phải tính khoảng cách tới mọi điểm','k = 1 → lỗi trên tập train bằng 0','Số chiều lớn → mọi điểm xa nhau gần như nhau (lời nguyền số chiều)'],
+ rem:['Có giám sát: dữ liệu có nhãn','Chọn k lẻ để tránh hòa phiếu (2 lớp)','PHẢI chuẩn hóa đặc trưng trước khi tính khoảng cách','Dự đoán chậm: phải tính khoảng cách tới mọi điểm','k = 1 → lỗi trên tập train bằng 0 (nếu không có hai điểm trùng nhau mà khác nhãn)','Số chiều lớn → mọi điểm xa nhau gần như nhau (lời nguyền số chiều)'],
  traps:['Thu nhập tính bằng triệu, tuổi tính bằng năm: thu nhập áp đảo khoảng cách nếu không chuẩn hóa.','k-NN (phân loại, có nhãn) khác k-means (phân cụm, không nhãn).'],
  tryit:'Bật Tô vùng quyết định, kéo k từ 1 lên 19. Ranh giới thay đổi thế nào? Kéo dấu ? tới chỗ hai nhóm giao nhau.',demo:demoKNN},
+{id:'xu-ly',part:'B',title:'Tiền xử lý dữ liệu và đặc trưng',
+ one:'Dữ liệu thật luôn bẩn: thiếu ô, lệch thang đo, có chữ thay vì số. Làm sạch đúng cách quan trọng không kém chọn mô hình.',
+ idea:'<p>Trước khi huấn luyện, dữ liệu cần được xử lý: <b>điền giá trị thiếu</b> (bằng trung bình, trung vị hoặc giá trị hay gặp nhất), đổi cột chữ thành số bằng <b>one-hot</b> (mỗi giá trị một cột 0/1), và <b>chuẩn hóa</b> để các đặc trưng có thang đo giống nhau.</p><p>Chuẩn hóa z-score: <span class="fx">z = (x − trung bình) / độ lệch chuẩn</span>. Min-max: <span class="fx">(x − min) / (max − min)</span> đưa về [0, 1]. Mọi thống kê (trung bình, min, max) phải tính trên <b>tập train</b> rồi mới áp cho validation và test. <b>Kỹ thuật đặc trưng</b> là tạo thêm cột có ích, ví dụ chỉ số BMI từ chiều cao và cân nặng.</p>',
+ life:'Nấu ăn: nhặt rau, rửa sạch, thái đều trước khi nấu. Nguyên liệu bẩn thì đầu bếp giỏi mấy cũng khó ra món ngon.',
+ rem:['Thiếu dữ liệu: bỏ hàng (nếu rất ít), hoặc điền trung bình, trung vị, giá trị hay gặp nhất','One-hot: cột "màu" có 3 giá trị → 3 cột 0/1','Đừng mã hóa đỏ = 1, xanh = 2, vàng = 3 cho cột không có thứ tự: mô hình sẽ tưởng vàng > xanh > đỏ','z-score: trung bình 0, độ lệch chuẩn 1. Min-max: về khoảng [0, 1]','Cần chuẩn hóa: k-NN, SVM, k-means, PCA, mạng nơ-ron. Hầu như không cần: cây quyết định, random forest','Rò rỉ dữ liệu: lúc huấn luyện dùng thông tin của tập test hoặc thông tin chỉ có sau khi biết đáp án','Dữ liệu mất cân bằng: dùng trọng số lớp hoặc lấy mẫu lại, đo bằng F1, recall thay vì accuracy'],
+ traps:['Tính trung bình để chuẩn hóa trên CẢ tập dữ liệu (gồm test) là rò rỉ dữ liệu.','Trung vị ít bị ngoại lai kéo lệch hơn trung bình.'],
+ tryit:'Bấm vào khung để đặt điểm cần đoán. So 5 hàng xóm gần nhất khi CHƯA và ĐÃ chuẩn hóa. Sau đó làm phần xếp thẻ bên dưới.',demo:demoPrep},
 {id:'cay',part:'B',title:'Cây quyết định và Gini',
  one:'Chơi trò 20 câu hỏi: mỗi câu hỏi chia dữ liệu thành hai nhóm thuần hơn.',
  idea:'<p>Một nhóm "thuần" là nhóm gần như chỉ có một màu. <b>Gini</b> đo độ lẫn lộn: 0 là thuần hoàn toàn, 0,5 là lẫn nhất (2 lớp, mỗi lớp một nửa).</p><p>Máy thử mọi câu hỏi có thể ("x &lt; 4?", "y &lt; 6?") và chọn câu làm Gini trung bình (tính theo số mẫu mỗi nhánh) giảm nhiều nhất. Rồi lặp lại cho từng nhánh. <b>Random forest</b> là nhiều cây, mỗi cây học trên một phần dữ liệu ngẫu nhiên, rồi bỏ phiếu.</p>',
@@ -740,6 +751,13 @@ const TOPICS=[
  rem:['Gini = 1 − Σ pᵢ². Nhóm 50/50: 0,5. Nhóm 100/0: 0','Entropy = −Σ pᵢ log₂ pᵢ. Nhóm 50/50: 1','Gini sau chia = trung bình có trọng số theo số mẫu mỗi nhánh','Information gain = độ lẫn trước − độ lẫn sau','Cây quá sâu → học thuộc → overfit. Giới hạn độ sâu, cắt tỉa','Random forest giảm phương sai; boosting giảm bias'],
  traps:['Gini 50/50 = 0,5 nhưng entropy 50/50 = 1. Đừng nhầm hai con số.','Cây quyết định không cần chuẩn hóa dữ liệu.'],
  tryit:'Bấm Tìm ngưỡng tốt nhất khi chia theo x, rồi đổi sang chia theo y. Cách nào làm Gini giảm nhiều hơn?',demo:demoTree},
+{id:'svm',part:'B',title:'SVM: đường chia có lề rộng nhất',
+ one:'Có nhiều đường chia được hai nhóm. SVM chọn đường cách xa điểm gần nhất của cả hai bên nhất.',
+ idea:'<p>Khi hai nhóm tách được bằng một đường thẳng, có vô số đường chia đúng. SVM chọn đường có <b>lề</b> (khoảng trống hai bên) rộng nhất, vì đường như vậy ít bị ảnh hưởng khi điểm mới hơi lệch.</p><p>Chỉ vài điểm nằm sát mép lề quyết định đường chia: đó là các <b>vector hỗ trợ</b> (support vector). Xóa một điểm ở xa thì đường không đổi. Khi dữ liệu không tách thẳng được, SVM dùng <b>lề mềm</b> (cho phép vài điểm sai, phạt theo tham số C) và <b>kernel</b> để tạo ranh giới cong.</p>',
+ life:'Kẻ vạch chia sân cho hai đội: kẻ ở giữa khoảng trống rộng nhất để không ai phải đứng sát vạch.',
+ rem:['Ranh giới: w·x + b = 0','Khoảng cách từ điểm x tới đường w·x + b = 0 là |w·x + b| / ‖w‖','Khi chuẩn hóa để điểm gần nhất có |w·x + b| = 1: độ rộng lề cả hai bên = 2 / ‖w‖','Vector hỗ trợ: các điểm nằm trên mép lề; chỉ chúng quyết định đường chia','C lớn: phạt sai nặng, lề hẹp, dễ overfit. C nhỏ: lề rộng, chấp nhận vài điểm sai','Kernel (RBF, đa thức) cho ranh giới cong mà không cần tính đặc trưng mới','SVM cần chuẩn hóa dữ liệu'],
+ traps:['Bỏ một điểm KHÔNG phải vector hỗ trợ thì ranh giới không đổi.','SVM cơ bản phân loại 2 lớp; nhiều lớp thì ghép nhiều SVM (một-chọi-một hoặc một-chọi-còn-lại).'],
+ tryit:'Xoay và dịch đường đỏ để mọi điểm nằm đúng phía và lề rộng nhất. Rồi bấm Tìm lề rộng nhất: điểm nào được khoanh tròn? Thử Thêm điểm lạc.',demo:demoSVM},
 {id:'kmeans',part:'B',title:'k-means: máy tự chia nhóm',
  one:'Không có đáp án sẵn. Máy tự gom các điểm gần nhau thành k nhóm.',
  idea:'<p>Đây là <b>học không giám sát</b>: dữ liệu không có nhãn. k-means lặp hai bước:</p><p><b>1. Gán:</b> mỗi điểm về tâm gần nó nhất. <b>2. Cập nhật:</b> dời mỗi tâm về trung bình các điểm trong nhóm. Lặp đến khi không điểm nào đổi nhóm.</p>',
@@ -747,18 +765,25 @@ const TOPICS=[
  rem:['Không giám sát: không có nhãn','Lặp: gán → cập nhật','Luôn dừng, nhưng kết quả phụ thuộc vị trí tâm ban đầu','Phải chọn trước k (phương pháp khuỷu tay, silhouette)','Inertia = tổng bình phương khoảng cách điểm tới tâm của nó','PCA cũng là không giám sát: giảm số chiều, giữ phương sai lớn nhất'],
  traps:['Tâm mới là TRUNG BÌNH các điểm trong nhóm, không phải điểm gần nhất.','k-means hợp với cụm tròn, kích thước gần nhau; nhạy với ngoại lai.'],
  tryit:'Kéo cả 3 tâm dồn vào một góc rồi bấm Tự chạy. So inertia với khi bấm Tâm ngẫu nhiên. Có lúc kết quả tệ hơn không?',demo:demoKMeans},
+{id:'pca',part:'B',title:'PCA: giảm số chiều',
+ one:'Nhìn đám điểm từ hướng thấy chúng trải rộng nhất, rồi bỏ bớt những hướng gần như không có thông tin.',
+ idea:'<p>Dữ liệu nhiều cột thường có các cột đi cùng nhau (chiều cao và sải tay). <b>PCA</b> tìm các hướng mới gọi là <b>thành phần chính</b>: hướng thứ nhất là hướng dữ liệu trải rộng nhất (phương sai lớn nhất), hướng thứ hai vuông góc với hướng thứ nhất, cứ thế tiếp.</p><p>Chiếu dữ liệu lên vài thành phần đầu là giữ được phần lớn thông tin mà ít cột hơn. Phần phương sai giữ lại bằng tổng các <b>trị riêng</b> đã giữ chia cho tổng mọi trị riêng. PCA không dùng nhãn nên là học không giám sát.</p>',
+ life:'Chụp ảnh một cái bàn: chụp từ trên xuống thấy rõ hình dáng, chụp ngang mặt bàn chỉ thấy một vạch mỏng. PCA chọn góc chụp thấy rõ nhất.',
+ rem:['Bước đầu: trừ trung bình mỗi cột (thường chuẩn hóa luôn)','Thành phần chính = vector riêng của ma trận hiệp phương sai','Phương sai theo mỗi thành phần = trị riêng tương ứng','Tỉ lệ giữ = tổng trị riêng giữ lại / tổng mọi trị riêng','Các thành phần chính vuông góc với nhau','Dùng để: vẽ dữ liệu nhiều chiều, nén, bớt nhiễu, tăng tốc mô hình','Không giám sát: không dùng nhãn'],
+ traps:['Không chuẩn hóa trước PCA thì cột có đơn vị lớn (đồng, mét) chiếm hết thành phần đầu.','Hướng phương sai lớn nhất chưa chắc là hướng tách các lớp tốt nhất, vì PCA không nhìn nhãn.'],
+ tryit:'Xoay trục tím để phần trăm phương sai giữ lại lớn nhất. Rồi bấm Tìm trục tốt nhất. Trục thứ hai (vuông góc) giữ bao nhiêu phần trăm?',demo:demoPCA},
 {id:'overfit',part:'B',title:'Overfitting: học thuộc lòng',
  one:'Mô hình giỏi là mô hình làm đúng đề MỚI, không phải thuộc lòng đề cũ.',
  idea:'<p>Chấm tím là dữ liệu <b>train</b> (để học). Vòng cam là dữ liệu <b>test</b> (đề mới, mô hình chưa thấy). Đường cong là đa thức bậc d.</p><p>Bậc thấp quá: không bắt được quy luật, sai cả hai (<b>underfit</b>). Bậc cao quá: đi qua đúng mọi điểm train, kể cả nhiễu, nhưng sai nhiều ở test (<b>overfit</b>). <b>Regularization λ</b> phạt đường cong ngoằn ngoèo, kéo mô hình về đơn giản hơn.</p>',
  life:'Học sinh học thuộc đáp án đề cũ: được 10 điểm đề cũ nhưng trượt đề mới.',
- rem:['Underfit: lỗi train cao, lỗi test cao','Overfit: lỗi train rất thấp, lỗi test cao hơn hẳn','Train: học trọng số. Validation: chọn siêu tham số. Test: dùng 1 lần cuối','k-fold: chia k phần, mỗi phần lần lượt làm validation, lấy trung bình','Chống overfit: thêm dữ liệu, regularization, dropout, early stopping, mô hình đơn giản hơn','L1 đẩy nhiều trọng số về đúng 0; L2 làm trọng số nhỏ đều','Muốn sai số tổng quát hóa giảm một nửa: cần gấp 4 lần dữ liệu (tỉ lệ 1/√n)'],
+ rem:['Underfit: lỗi train cao, lỗi test cao','Overfit: lỗi train rất thấp, lỗi test cao hơn hẳn','Train: học trọng số. Validation: chọn siêu tham số. Test: dùng 1 lần cuối','k-fold: chia k phần, mỗi phần lần lượt làm validation, lấy trung bình','Chống overfit: thêm dữ liệu, regularization, dropout, early stopping, mô hình đơn giản hơn','L1 đẩy nhiều trọng số về đúng 0; L2 làm trọng số nhỏ đều','Muốn sai số tổng quát hóa giảm một nửa: cần gấp 4 lần dữ liệu (tỉ lệ 1/√n)','Bias cao ↔ underfit; variance cao ↔ overfit (đánh đổi bias–variance)'],
  traps:['Dùng tập test để chỉnh mô hình là gian lận: điểm test sẽ đẹp giả.','Chuẩn hóa phải tính trên train rồi mới áp cho test (tránh rò rỉ dữ liệu).'],
  tryit:'Kéo bậc lên 9: lỗi train gần 0 nhưng lỗi test thế nào? Giữ bậc 9 và tăng λ. Bấm Dữ liệu mới vài lần ở bậc 9.',demo:demoOverfit},
 {id:'danh-gia',part:'B',title:'Đánh giá: precision, recall, F1',
  one:'Accuracy cao chưa chắc mô hình tốt. Phải xem nó sai kiểu gì.',
  idea:'<p>Mô hình chấm mỗi người một điểm từ 0 đến 1. Ta chọn một <b>ngưỡng</b>: điểm ≥ ngưỡng thì đoán Dương. Kết quả rơi vào 4 ô: <b>TP</b> bắt đúng, <b>FN</b> bỏ sót, <b>FP</b> báo nhầm, <b>TN</b> bỏ qua đúng.</p><p><b>Precision</b>: trong những ca máy bảo dương, bao nhiêu % đúng? <b>Recall</b>: trong những ca dương thật, máy bắt được bao nhiêu %? Nâng ngưỡng thì precision thường tăng, recall giảm.</p>',
  life:'Lọc thư rác: báo nhầm (xóa mất thư quan trọng) rất tệ → cần precision cao. Sàng lọc ung thư: bỏ sót rất tệ → cần recall cao.',
- rem:['Precision = TP / (TP + FP)','Recall = TP / (TP + FN)','F1 = 2·P·R / (P + R), bị kéo về số nhỏ hơn','Tăng ngưỡng: precision thường tăng, recall giảm','Với xác suất chuẩn: ngưỡng tối ưu = C_FP / (C_FP + C_FN)','Tỉ lệ ca dương giảm: recall và FPR giữ nguyên, precision giảm','Macro-average: trung bình cộng các lớp, mỗi lớp nặng như nhau'],
+ rem:['Precision = TP / (TP + FP)','Recall = TP / (TP + FN)','F1 = 2·P·R / (P + R), bị kéo về số nhỏ hơn','Tăng ngưỡng: precision thường tăng, recall giảm','Với xác suất chuẩn: ngưỡng tối ưu = C_FP / (C_FP + C_FN)','Tỉ lệ ca dương giảm: recall và FPR giữ nguyên, precision giảm','Macro-average: trung bình cộng các lớp, mỗi lớp nặng như nhau','ROC: TPR theo FPR khi đổi ngưỡng. AUC = 1 hoàn hảo, 0,5 như đoán bừa'],
  traps:['Dữ liệu 99% âm: luôn đoán âm được accuracy 99% nhưng recall = 0.','Chữ thứ 2 (P/N) là máy đoán gì, chữ thứ 1 (T/F) là đoán đúng hay sai.'],
  tryit:'Kéo tỉ lệ ca dương từ 30% xuống 2%. Recall có đổi không? Precision thì sao? Rồi tăng chi phí bỏ sót và bấm Đặt ngưỡng ít tốn kém nhất.',demo:demoMetrics},
 {id:'noron',part:'C',title:'Nơ-ron và hàm kích hoạt',
@@ -775,18 +800,25 @@ const TOPICS=[
  rem:['Kích thước ra = ⌊(W − K + 2P) / S⌋ + 1','Số kênh ra = số kernel','Tham số lớp conv = (K × K × C_vào + 1) × số kernel','Pooling không có tham số, không đổi số kênh','Giữ nguyên kích thước (S = 1): P = (K − 1)/2','Lớp đầu học cạnh, lớp sau học hình dạng, lớp cuối học vật thể'],
  traps:['Nhớ +1 trong công thức và làm tròn XUỐNG.','Đếm tham số đừng quên bias (+1 cho mỗi kernel).'],
  tryit:'Chọn ảnh Chữ T, kernel Cạnh dọc. Ô nào trong feature map lớn nhất? Đổi stride sang 2, padding sang 1: kích thước còn bao nhiêu? Kiểm tra bằng máy tính bên dưới.',demo:demoCNN},
+{id:'rnn',part:'C',title:'RNN: mạng có trí nhớ',
+ one:'Đọc câu từng từ một, mang theo một "trí nhớ" tóm tắt những gì đã đọc.',
+ idea:'<p>Văn bản, âm thanh, giá cổ phiếu là <b>chuỗi</b>: thứ tự rất quan trọng. <b>RNN</b> đọc lần lượt từng phần tử và giữ một trạng thái ẩn h: <span class="fx">hₜ = tanh(W·hₜ₋₁ + U·xₜ + b)</span>. Cùng một bộ trọng số được dùng lại ở mọi bước.</p><p>Khi lan truyền ngược qua nhiều bước, gradient bị nhân với nhau nhiều lần: các thừa số nhỏ hơn 1 thì gradient <b>tiêu biến</b> (mô hình quên đầu câu), lớn hơn 1 thì <b>bùng nổ</b>. <b>LSTM</b> và <b>GRU</b> thêm các "cổng" để giữ trí nhớ lâu hơn. Transformer thay RNN bằng attention: nhìn cả câu cùng lúc và chạy song song được.</p>',
+ life:'Nghe kể chuyện: em nhớ tóm tắt những gì đã nghe để hiểu câu tiếp theo. Truyện dài quá thì quên mất đoạn đầu.',
+ rem:['hₜ = tanh(W·hₜ₋₁ + U·xₜ + b): trạng thái mới phụ thuộc trạng thái cũ và đầu vào mới','Dùng chung trọng số ở mọi bước → số tham số không phụ thuộc độ dài chuỗi','Huấn luyện bằng lan truyền ngược theo thời gian (BPTT)','Gradient qua T bước ≈ tích T thừa số: nhỏ hơn 1 thì tiêu biến, lớn hơn 1 thì bùng nổ','Chống bùng nổ gradient: cắt gradient (gradient clipping)','LSTM, GRU dùng các cổng (quên, vào, ra) để nhớ xa hơn','RNN phải chạy tuần tự từng bước; Transformer xử lý mọi vị trí song song'],
+ traps:['RNN không có trọng số riêng cho từng vị trí: cùng W, U cho mọi bước.','Tiêu biến gradient làm RNN khó học quan hệ xa, chứ không làm nó chạy chậm hơn.'],
+ tryit:'Chỉ từ đầu tiên mang tín hiệu. Kéo W từ 0,5 lên 1,2: ở cuối câu còn nhớ được bao nhiêu? Đổi sang LSTM rồi kéo cổng quên.',demo:demoRNN},
 {id:'attention',part:'C',title:'Transformer: attention và vị trí',
  one:'Khi đọc một từ, mô hình nhìn lại cả câu xem từ nào liên quan nhất.',
- idea:'<p>Mỗi từ có một câu hỏi (<b>Query</b>), một nhãn (<b>Key</b>) và một nội dung (<b>Value</b>). Điểm liên quan giữa hai từ là Query · Key. <b>Softmax</b> biến các điểm thành phần trăm cộng lại 100%. Kết quả là trung bình các Value theo phần trăm đó.</p><p>Attention <b>không biết thứ tự</b>: "chó cắn người" và "người cắn chó" như nhau. Vì vậy cần <b>positional encoding</b>: cộng vào mỗi từ một "mã số ghế" làm từ các sóng sin, cos.</p>',
+ idea:'<p>Mỗi từ có một câu hỏi (<b>Query</b>), một nhãn (<b>Key</b>) và một nội dung (<b>Value</b>). Điểm liên quan giữa hai từ là Query · Key. <b>Softmax</b> biến các điểm thành phần trăm cộng lại 100%. Kết quả là trung bình các Value theo phần trăm đó.</p><p>Bản thân attention <b>không biết thứ tự</b>: "chó cắn người" và "người cắn chó" cho ra cùng các vector, chỉ bị đổi chỗ. Vì vậy cần <b>positional encoding</b>: cộng vào mỗi từ một "mã số ghế" làm từ các sóng sin, cos.</p>',
  life:'Đọc câu "Con mèo không ăn cá vì nó no", muốn hiểu "nó" là ai, bạn nhìn lại và thấy "mèo".',
  rem:['Attention = softmax(Q·Kᵀ / √dₖ) · V','Chia √dₖ để softmax không quá nhọn, gradient không quá nhỏ','Độ phức tạp O(n²) theo độ dài câu n','Positional encoding được CỘNG vào embedding, cùng số chiều','Sin/cos: giá trị trong [−1, 1]; chiều đầu đổi nhanh, chiều sau đổi chậm','PE(pos + k) là phép biến đổi tuyến tính (phép quay) của PE(pos)','PE(0) = (0, 1, 0, 1, …) vì sin 0 = 0, cos 0 = 1','GPT dùng masked attention: chỉ nhìn các từ phía trước'],
  traps:['Không có positional encoding, xáo trộn từ đầu vào chỉ làm xáo trộn đầu ra tương ứng.','Multi-head: nhiều đầu attention chạy song song, mỗi đầu học một kiểu quan hệ.'],
  tryit:'Bấm vào từ "nó" và "ăn". Mỗi từ chú ý nhiều nhất tới từ nào? Đổi sang Không chia √dₖ. Rê chuột trên bản đồ sin/cos.',demo:demoAttention},
 {id:'tim-kiem',part:'D',title:'Tìm đường: BFS, DFS, A*',
  one:'Tìm đường từ S đến G. Các thuật toán khác nhau ở chỗ ô nào được xét trước.',
- idea:'<p><b>BFS</b> lan đều như vết dầu loang, luôn tìm đường ít bước nhất. <b>DFS</b> lao thẳng một hướng đến cùng, tốn ít bộ nhớ nhưng đường thường dài. <b>A*</b> xét ô có <span class="fx">f = g + h</span> nhỏ nhất: g là quãng đã đi, h là ước lượng quãng còn lại.</p><p>Nếu h <b>không bao giờ ước lượng quá</b> quãng thật (admissible), A* luôn tìm đường ngắn nhất mà xét ít ô hơn BFS. Nhân h lên 3 thì nhanh hơn nhưng có thể mất đường ngắn nhất.</p>',
+ idea:'<p><b>BFS</b> lan đều như vết dầu loang, luôn tìm đường ít bước nhất. <b>DFS</b> lao thẳng một hướng đến cùng, tốn ít bộ nhớ nhưng đường thường dài. <b>A*</b> xét ô có <span class="fx">f = g + h</span> nhỏ nhất: g là quãng đã đi, h là ước lượng quãng còn lại.</p><p>Nếu h <b>không bao giờ ước lượng quá</b> quãng thật (admissible), A* luôn tìm được đường ngắn nhất và thường xét ít ô hơn BFS. Nhân h lên 3 thì nhanh hơn nhưng có thể mất đường ngắn nhất.</p>',
  life:'Tìm lớp học trong trường mới: BFS là hỏi hết các phòng gần trước. A* là đi về phía có biển chỉ dẫn, vừa đi vừa ước lượng còn bao xa.',
- rem:['BFS: hàng đợi; tối ưu khi mọi bước cùng chi phí','DFS: ngăn xếp; tốn ít bộ nhớ; không tối ưu','A*: f(n) = g(n) + h(n)','Admissible: h(n) ≤ chi phí thật còn lại','Consistent: h(n) ≤ c(n, n′) + h(n′); consistent kéo theo admissible','Lưới đi 4 hướng: Manhattan là admissible','A* dừng khi LẤY đích ra để mở rộng, không phải khi mới thấy đích'],
+ rem:['BFS: hàng đợi; tối ưu khi mọi bước cùng chi phí','DFS: ngăn xếp; tốn ít bộ nhớ; không tối ưu','A*: f(n) = g(n) + h(n)','Admissible: h(n) ≤ chi phí thật còn lại','Consistent: h(n) ≤ c(n, n′) + h(n′); consistent kéo theo admissible','Lưới đi 4 hướng: Manhattan là admissible','A* dừng khi LẤY đích ra để mở rộng, không phải khi mới thấy đích','Tìm kiếm đồ thị không mở lại ô đã xét: cần h consistent mới chắc chắn tối ưu'],
  traps:['Cạnh có chi phí khác nhau: BFS không còn tối ưu, dùng uniform cost hoặc A*.','max(h₁, h₂) của hai heuristic admissible vẫn admissible; h₁ + h₂ thường không.'],
  tryit:'Lần lượt bấm BFS, A*, A* (h × 3), DFS. So số ô đã xét và độ dài đường. Tự vẽ thêm tường rồi chạy lại.',demo:demoSearch},
 {id:'bandit',part:'D',title:'Bandit: khám phá hay khai thác',
@@ -814,13 +846,20 @@ const TOPICS=[
  one:'Một mô hình có thể chính xác mà vẫn bất công với một nhóm người.',
  idea:'<p>Dữ liệu lệch (bất công trong quá khứ, ít mẫu của một nhóm) tạo ra mô hình lệch. Có nhiều định nghĩa công bằng: <b>tỉ lệ được duyệt</b> bằng nhau, <b>người đủ chuẩn</b> được duyệt như nhau (TPR bằng nhau), <b>được duyệt thì khả năng đủ chuẩn</b> như nhau (precision bằng nhau).</p><p>Khi tỉ lệ người đủ chuẩn của hai nhóm khác nhau, <b>không thể</b> đạt mọi tiêu chí cùng lúc. Phải chọn tiêu chí theo hoàn cảnh.</p>',
  life:'Một hệ thống chấm hồ sơ học bổng học từ dữ liệu cũ, nơi trường A từng được ưu tiên, sẽ tiếp tục ưu tiên trường A.',
- rem:['Demographic parity: tỉ lệ duyệt bằng nhau','Equal opportunity: TPR bằng nhau','Equalized odds: TPR và FPR đều bằng nhau','Predictive parity: precision bằng nhau','Tỉ lệ nền khác nhau → không thể thỏa tất cả (định lý bất khả thi)','Bỏ cột giới tính chưa đủ: địa chỉ, tên trường vẫn là biến đại diện','Quy tắc 4/5: tỉ lệ duyệt nhóm thấp / nhóm cao < 0,8 là dấu hiệu bất lợi'],
+ rem:['Demographic parity: tỉ lệ duyệt bằng nhau','Equal opportunity: TPR bằng nhau','Equalized odds: TPR và FPR đều bằng nhau','Predictive parity: precision bằng nhau','Tỉ lệ nền khác nhau và mô hình không hoàn hảo → không thể thỏa tất cả (định lý bất khả thi)','Bỏ cột giới tính chưa đủ: địa chỉ, tên trường vẫn là biến đại diện','Quy tắc 4/5: tỉ lệ duyệt nhóm thấp / nhóm cao < 0,8 là dấu hiệu bất lợi'],
  traps:['Riêng tư vi phân thường làm giảm độ chính xác nhiều nhất ở nhóm thiểu số.','Ít dữ liệu của một nhóm là thiên lệch đại diện (lấy mẫu).'],
- tryit:'Bấm Ngưỡng chung 0,5: tiêu chí nào đạt, tiêu chí nào trượt? Rồi bấm Cân bằng tỉ lệ duyệt và Cân bằng precision.',demo:demoFair}
+ tryit:'Bấm Ngưỡng chung 0,5: tiêu chí nào đạt, tiêu chí nào trượt? Rồi bấm Cân bằng tỉ lệ duyệt và Cân bằng precision.',demo:demoFair},
+{id:'python',part:'F',title:'Python, pandas, scikit-learn cho Vòng 2',
+ one:'Vòng 2 là bài thực hành: đọc dữ liệu, làm sạch, huấn luyện, tự chấm, nộp dự đoán, trên máy không có internet.',
+ idea:'<p>Bốn thư viện chính: <b>NumPy</b> (mảng số, tính nhanh), <b>pandas</b> (bảng dữ liệu DataFrame), <b>matplotlib</b> (vẽ biểu đồ), <b>scikit-learn</b> (mô hình học máy). Một quy trình mẫu:</p><pre>import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import f1_score\n\ndf = pd.read_csv("train.csv")\nX = df.drop(columns=["label"])\ny = df["label"]\nX_tr, X_va, y_tr, y_va = train_test_split(X, y, test_size=0.2, random_state=0)\n\nmodel = RandomForestClassifier(n_estimators=300, random_state=0)\nmodel.fit(X_tr, y_tr)\nprint(f1_score(y_va, model.predict(X_va), average="macro"))\n\ntest = pd.read_csv("test.csv")\npred = model.predict(test[X.columns])\npd.DataFrame({"id": test["id"], "label": pred}).to_csv("submission.csv", index=False)</pre><p>Luôn làm một <b>mô hình mốc</b> đơn giản trước (đoán lớp đa số, hồi quy logistic) và nộp sớm một bản, rồi mới thử mô hình mạnh hơn. Tự chấm bằng đúng chỉ số của đề trên tập validation tự chia.</p>',
+ life:'Như thi nấu ăn 5 giờ với tủ lạnh có sẵn: không được gọi điện hỏi ai, nên phải thuộc công thức và luyện tay từ trước.',
+ rem:['NumPy: a.shape cho kích thước; a.mean(axis=0) là trung bình theo từng cột','pandas: df.head(), df.info(), df.describe(), df.isnull().sum() để xem nhanh dữ liệu','scikit-learn: model.fit(X, y) để học, model.predict(X) để đoán','train_test_split để tách validation; cross_val_score để kiểm định chéo','Pipeline gom tiền xử lý và mô hình, tránh rò rỉ dữ liệu','Cố định random_state để kết quả lặp lại được','Chọn siêu tham số bằng kiểm định chéo (GridSearchCV hoặc thử tay vài giá trị), không chọn theo tập test','Dữ liệu dạng bảng: random forest, gradient boosting thường rất mạnh','Lưu file nộp đúng định dạng đề yêu cầu (tên cột, thứ tự id)'],
+ traps:['fit chỉ trên train; với validation và test chỉ dùng transform hoặc predict.','Không có internet: cài sẵn thư viện, tải sẵn tài liệu về máy và luyện gõ code không cần tra mạng.'],
+ tryit:'Xếp mỗi dòng code vào đúng thư viện. Đọc giải thích khi chọn sai.',demo:demoPython}
 ];
 const topicById=id=>TOPICS.find(t=>t.id===id);
 /* stable bit per topic so quiz codes stay valid when lessons are added or reordered */
-const BITS={vector:0,gradient:1,bayes:2,'hoi-quy':3,knn:4,cay:5,kmeans:6,overfit:7,'danh-gia':8,noron:9,cnn:10,attention:11,'tim-kiem':12,bandit:13,'bat-thuong':14,'rieng-tu':15,'cong-bang':16,'ai-la-gi':17,'du-lieu':18,'hoc-tu-vi-du':19,'kieu-hoc':20,'ban-do':21,logic:22};
+const BITS={vector:0,gradient:1,bayes:2,'hoi-quy':3,knn:4,cay:5,kmeans:6,overfit:7,'danh-gia':8,noron:9,cnn:10,attention:11,'tim-kiem':12,bandit:13,'bat-thuong':14,'rieng-tu':15,'cong-bang':16,'ai-la-gi':17,'du-lieu':18,'hoc-tu-vi-du':19,'kieu-hoc':20,'ban-do':21,logic:22,'xu-ly':23,svm:24,pca:25,rnn:26,python:27};
 const INTRO={
  vector:['Mọi dữ liệu trong AI đều được biến thành vector. Khoảng cách và tích vô hướng xuất hiện trong k-NN, k-means, SVM, attention.','Tọa độ trên mặt phẳng, định lý Pytago.'],
  gradient:['Đây là cách hầu hết mô hình AI "học": giảm dần lỗi bằng từng bước nhỏ.','Đọc được đồ thị hàm số; biết độ dốc của một đường thẳng.'],
@@ -838,7 +877,12 @@ const INTRO={
  bandit:['Ra quyết định khi chưa biết đủ thông tin; dạng đơn giản nhất của học tăng cường.','Trung bình cộng; xác suất đơn giản.'],
  'bat-thuong':['Ứng dụng thật: phát hiện gian lận thẻ, máy hỏng. Kernel cũng là ý tưởng chính của SVM.','Bài Vector và khoảng cách; bài k-NN.'],
  'rieng-tu':['AI dùng dữ liệu của con người nên phải bảo vệ riêng tư. Đề có câu tính toán về ε.','Phân số; hiểu thế nào là nhiễu ngẫu nhiên.'],
- 'cong-bang':['AI quyết định cho vay, tuyển dụng, chấm hồ sơ, nên cần công bằng với mọi nhóm người.','Bài Đánh giá (TPR, precision).']};
+ 'cong-bang':['AI quyết định cho vay, tuyển dụng, chấm hồ sơ, nên cần công bằng với mọi nhóm người.','Bài Đánh giá (TPR, precision).'],
+ 'xu-ly':['Vòng 2 là bài thực hành với dữ liệu thật: làm sạch và chuẩn hóa đúng cách thường giúp điểm tăng nhiều hơn đổi thuật toán.','Bài Dữ liệu, đặc trưng và nhãn; bài k-NN.'],
+ svm:['Một thuật toán phân loại kinh điển trong đề cương, nối tích vô hướng, khoảng cách và kernel với nhau.','Bài Vector (tích vô hướng, khoảng cách); bài Hồi quy logistic.'],
+ pca:['Đề cương có PCA. Dữ liệu Vòng 2 có thể rất nhiều cột; PCA giúp nhìn và nén chúng.','Bài Vector; bài Xác suất (phương sai).'],
+ rnn:['Đề cương nhắc RNN cùng Transformer. Hiểu RNN giúp hiểu vì sao attention ra đời.','Bài Nơ-ron (tanh, vanishing gradient).'],
+ python:['Vòng 2 chấm bằng điểm dự đoán thật, nên cần thành thạo công cụ chứ không chỉ hiểu lý thuyết.','Biết Python cơ bản: biến, list, vòng lặp, hàm.']};
 TOPICS.forEach(t=>{ t.bit=BITS[t.id]; if(INTRO[t.id]){ t.why=INTRO[t.id][0]; t.pre=INTRO[t.id][1]; } });
 const GLOSS=[
 ['ai-la-gi','Trí tuệ nhân tạo','Artificial Intelligence (AI)','Lĩnh vực làm cho máy làm được việc cần trí thông minh.'],
@@ -901,7 +945,7 @@ const GLOSS=[
 ['cay','Boosting','Boosting','Các mô hình học nối tiếp, cái sau sửa lỗi cái trước.'],
 ['kmeans','k-means','k-means','Chia dữ liệu thành k cụm quanh k tâm.'],
 ['kmeans','Tâm cụm','Centroid','Điểm trung bình của một cụm.'],
-['kmeans','Phân tích thành phần chính','PCA','Giảm số chiều, giữ phương sai lớn nhất.'],
+['pca','Phân tích thành phần chính','PCA','Giảm số chiều, giữ phương sai lớn nhất.'],
 ['overfit','Quá khớp','Overfitting','Học thuộc dữ liệu train, kém với dữ liệu mới.'],
 ['overfit','Chưa khớp','Underfitting','Mô hình quá đơn giản, sai cả train lẫn test.'],
 ['overfit','Kiểm định chéo','Cross-validation','Chia k phần, lần lượt mỗi phần làm validation.'],
@@ -954,7 +998,31 @@ const GLOSS=[
 ['cong-bang','Công bằng','Fairness','Mô hình không bất lợi cho một nhóm người.'],
 ['cong-bang','Biến đại diện','Proxy variable','Biến gián tiếp mang thông tin nhạy cảm.'],
 ['cong-bang','Bình đẳng tỉ lệ','Demographic parity','Tỉ lệ được duyệt bằng nhau giữa các nhóm.'],
-['cong-bang','Cơ hội ngang nhau','Equal opportunity','TPR bằng nhau giữa các nhóm.']
+['cong-bang','Cơ hội ngang nhau','Equal opportunity','TPR bằng nhau giữa các nhóm.'],
+['xu-ly','Giá trị thiếu','Missing value','Ô dữ liệu bị bỏ trống.'],
+['xu-ly','Mã hóa one-hot','One-hot encoding','Mỗi giá trị chữ thành một cột 0/1.'],
+['xu-ly','Chuẩn hóa min-max','Min-max scaling','Đưa giá trị về khoảng [0, 1].'],
+['xu-ly','Kỹ thuật đặc trưng','Feature engineering','Tạo thêm cột có ích từ các cột sẵn có.'],
+['xu-ly','Dữ liệu mất cân bằng','Imbalanced data','Một lớp có ít mẫu hơn hẳn các lớp khác.'],
+['svm','Lề','Margin','Khoảng trống giữa đường chia và điểm gần nhất.'],
+['svm','Vector hỗ trợ','Support vectors','Các điểm nằm trên mép lề, quyết định đường chia.'],
+['svm','Lề mềm','Soft margin (C)','Cho phép vài điểm sai, phạt theo tham số C.'],
+['pca','Thành phần chính','Principal component','Hướng dữ liệu trải rộng nhất (vuông góc với các hướng trước).'],
+['pca','Trị riêng','Eigenvalue','Phương sai của dữ liệu theo một thành phần chính.'],
+['pca','Ma trận hiệp phương sai','Covariance matrix','Bảng cho biết các cột biến thiên cùng nhau thế nào.'],
+['pca','Giảm số chiều','Dimensionality reduction','Biểu diễn dữ liệu bằng ít cột hơn mà mất ít thông tin.'],
+['rnn','Mạng nơ-ron hồi quy','Recurrent Neural Network (RNN)','Mạng đọc chuỗi từng bước, mang theo trạng thái ẩn.'],
+['rnn','Trạng thái ẩn','Hidden state','Trí nhớ tóm tắt những gì đã đọc.'],
+['rnn','LSTM','Long Short-Term Memory','RNN có các cổng để nhớ thông tin xa.'],
+['rnn','Bùng nổ gradient','Exploding gradient','Gradient lớn dần qua nhiều bước, làm việc học không ổn định.'],
+['rnn','Chuỗi','Sequence','Dữ liệu có thứ tự: câu, âm thanh, chuỗi thời gian.'],
+['python','NumPy','NumPy','Thư viện mảng số của Python.'],
+['python','pandas','pandas','Thư viện bảng dữ liệu (DataFrame).'],
+['python','scikit-learn','scikit-learn','Thư viện mô hình học máy: fit, predict.'],
+['python','Mô hình mốc','Baseline','Mô hình đơn giản làm mốc để so sánh.'],
+['python','Pipeline','Pipeline','Chuỗi bước xử lý và mô hình gom làm một.'],
+['danh-gia','Đường ROC, AUC','ROC curve, AUC','TPR theo FPR khi đổi ngưỡng; AUC là diện tích dưới đường.'],
+['overfit','Đánh đổi bias–variance','Bias–variance trade-off','Mô hình quá đơn giản (bias cao) hay quá nhạy với dữ liệu (variance cao).']
 ].map(([t,vi,en,m])=>({t,vi,en,m}));
 
 /* question bank: a = indices of correct options (more than one = nhiều đáp án) */
@@ -980,7 +1048,7 @@ const QB=[
 {t:'hoi-quy',q:'y thật = (3, 5, 4), dự đoán = (2, 5, 6). MSE bằng?',o:['5/3','1','3','5'],a:[0],e:'Sai số: 1, 0, −2. Bình phương: 1, 0, 4. Trung bình: 5/3 ≈ 1,67.'},
 {t:'hoi-quy',q:'Bài toán nào là hồi quy?',o:['Dự đoán giá nhà theo diện tích','Phân biệt thư rác','Nhận diện chữ số 0–9','Chia khách hàng thành nhóm khi không có nhãn'],a:[0],e:'Hồi quy dự đoán một con số liên tục. Hai bài giữa là phân loại, bài cuối là phân cụm.'},
 {t:'hoi-quy',q:'Vì sao MSE nhạy với điểm ngoại lai?',o:['Bình phương làm sai số lớn càng lớn hơn','MSE bỏ qua sai số âm','MSE chỉ tính điểm ngoại lai','MSE dùng trị tuyệt đối'],a:[0],e:'Sai số 10 thành 100, trong khi sai số 1 vẫn là 1.'},
-{t:'hoi-quy',q:'Phát biểu nào đúng về hồi quy logistic?',o:['Là thuật toán phân loại','Dùng hàm sigmoid để ra xác suất','Ranh giới quyết định có thể là đường cong bất kỳ','Hàm loss thường dùng là cross-entropy'],a:[0,1,3],e:'Ranh giới w·x + b = 0 là tuyến tính (đường thẳng, mặt phẳng).'},
+{t:'hoi-quy',q:'Phát biểu nào đúng về hồi quy logistic?',o:['Là thuật toán phân loại','Dùng hàm sigmoid để ra xác suất','Với đặc trưng gốc, ranh giới quyết định có thể là đường cong bất kỳ','Hàm loss thường dùng là cross-entropy'],a:[0,1,3],e:'Ranh giới w·x + b = 0 là tuyến tính (đường thẳng, mặt phẳng).'},
 
 {t:'knn',q:'Dùng k-NN với k = 1 để dự đoán lại chính tập train (không có điểm trùng). Lỗi train bằng?',o:['0','50%','100%','Không xác định'],a:[0],e:'Điểm gần mỗi điểm train nhất là chính nó, nên luôn đoán đúng.'},
 {t:'knn',q:'Vì sao phải chuẩn hóa dữ liệu trước khi dùng k-NN?',o:['Đặc trưng có thang đo lớn sẽ áp đảo khoảng cách','Để bước huấn luyện nhanh hơn','Vì k-NN dùng gradient descent','Để giảm số lớp'],a:[0],e:'Khoảng cách cộng các chênh lệch; chênh lệch hàng triệu sẽ nuốt chênh lệch vài năm tuổi.'},
@@ -995,8 +1063,9 @@ const QB=[
 
 {t:'kmeans',q:'Điểm 1, 2, 9, 10; tâm ban đầu 1 và 2. Sau một vòng gán và cập nhật, hai tâm mới là?',o:['1 và 7','1,5 và 9,5','1 và 2','5 và 6'],a:[0],e:'9 và 10 gần tâm 2 hơn tâm 1, nên nhóm là {1} và {2, 9, 10}. Tâm mới: 1 và 21/3 = 7.'},
 {t:'kmeans',q:'k-means thuộc loại học nào?',o:['Không giám sát','Có giám sát','Học tăng cường','Học bán giám sát bắt buộc có nhãn'],a:[0],e:'k-means không dùng nhãn, tự tìm nhóm.'},
+{t:'kmeans',q:'Tăng số cụm k thì inertia tốt nhất có thể đạt được sẽ?',o:['Giảm hoặc giữ nguyên','Tăng lên','Luôn bằng 0','Không liên quan đến k'],a:[0],e:'Thêm tâm thì điểm có thể ở gần tâm hơn; k bằng số điểm thì inertia = 0. Vì vậy không chọn k bằng cách làm inertia nhỏ nhất, mà nhìn chỗ gấp khúc (phương pháp khuỷu tay).'},
 {t:'kmeans',q:'Phát biểu nào đúng về k-means?',o:['Kết quả phụ thuộc vị trí tâm ban đầu','Phải chọn trước k','Luôn tìm được nghiệm tốt nhất toàn cục','Hợp nhất với cụm tròn, kích thước tương đương'],a:[0,1,3],e:'k-means có thể dừng ở cực tiểu cục bộ; vì thế người ta chạy nhiều lần hoặc dùng k-means++.'},
-{t:'kmeans',q:'PCA có các trị riêng 4, 3, 2, 1. Giữ 2 thành phần chính thì giữ bao nhiêu % phương sai?',o:['70%','50%','80%','90%'],a:[0],e:'(4 + 3)/(4 + 3 + 2 + 1) = 7/10 = 70%.'},
+{t:'pca',q:'PCA có các trị riêng 4, 3, 2, 1. Giữ 2 thành phần chính thì giữ bao nhiêu % phương sai?',o:['70%','50%','80%','90%'],a:[0],e:'(4 + 3)/(4 + 3 + 2 + 1) = 7/10 = 70%.'},
 
 {t:'overfit',q:'Lỗi train 1%, lỗi validation 25%. Mô hình đang?',o:['Overfit','Underfit','Vừa khéo','Không kết luận được gì'],a:[0],e:'Train rất tốt nhưng dữ liệu mới rất kém: học thuộc lòng.'},
 {t:'overfit',q:'Tập test dùng để làm gì?',o:['Báo cáo kết quả cuối cùng, chỉ dùng một lần','Chọn siêu tham số','Huấn luyện trọng số','Tăng thêm dữ liệu train'],a:[0],e:'Chọn siêu tham số là việc của tập validation.'},
@@ -1084,7 +1153,39 @@ const QB=[
 {t:'logic',q:'Mệnh đề nào tương đương với p → q?',o:['¬q → ¬p','q → p','¬p → ¬q','p ∧ q'],a:[0],e:'Phản đảo luôn tương đương. Đảo (q → p) và phản (¬p → ¬q) thì không.'},
 {t:'logic',q:'¬(p ∧ q) tương đương với?',o:['¬p ∨ ¬q','¬p ∧ ¬q','p ∨ q','¬p → q'],a:[0],e:'Luật De Morgan: phủ định của "và" là "hoặc" của các phủ định.'},
 {t:'logic',q:'Phủ định của "Mọi học sinh đều thích toán" là?',o:['Có ít nhất một học sinh không thích toán','Mọi học sinh đều không thích toán','Không có học sinh nào','Có học sinh thích toán'],a:[0],e:'Phủ định của "mọi" là "tồn tại một cái không".'},
-{t:'logic',q:'Những suy luận nào luôn đúng?',o:['Có p và p → q, suy ra q','Có ¬q và p → q, suy ra ¬p','Có q và p → q, suy ra p','Có ¬p và p → q, suy ra ¬q'],a:[0,1],e:'Hai cái đầu là modus ponens và modus tollens. Hai cái sau là lỗi suy luận phổ biến.'}
+{t:'logic',q:'Những suy luận nào luôn đúng?',o:['Có p và p → q, suy ra q','Có ¬q và p → q, suy ra ¬p','Có q và p → q, suy ra p','Có ¬p và p → q, suy ra ¬q'],a:[0,1],e:'Hai cái đầu là modus ponens và modus tollens. Hai cái sau là lỗi suy luận phổ biến.'},
+{t:'xu-ly',q:'Cột "chiều cao (cm)" có các giá trị 150, 160, 170. Chuẩn hóa min-max thì 160 thành?',o:['0,5','160','0','1'],a:[0],e:'(160 − 150)/(170 − 150) = 0,5.'},
+{t:'xu-ly',q:'Cột "thành phố" có 3 giá trị Hà Nội, Huế, Đà Nẵng. One-hot tạo ra bao nhiêu cột?',o:['3','1','2','6'],a:[0],e:'Mỗi giá trị một cột 0/1. (Với mô hình tuyến tính có thể bỏ bớt 1 cột, nhưng mặc định là 3.)'},
+{t:'xu-ly',q:'Mô hình nào hầu như KHÔNG bị ảnh hưởng khi đổi thang đo một đặc trưng (ví dụ đổi cm sang m)?',o:['Cây quyết định','k-NN','SVM dùng kernel RBF','k-means'],a:[0],e:'Cây chỉ so sánh từng cột với một ngưỡng, nên nhân cột với một số dương không đổi cách chia.'},
+{t:'xu-ly',q:'Những việc nào gây rò rỉ dữ liệu?',o:['Tính trung bình, độ lệch chuẩn trên cả train lẫn test rồi chuẩn hóa','Dùng cột "đã được hoàn tiền" để dự đoán "giao dịch có gian lận không"','Chia train/test trước, rồi chỉ học thống kê trên train','Để cùng một bệnh nhân có mặt ở cả train và test'],a:[0,1,3],e:'Cột hoàn tiền chỉ có SAU khi biết gian lận. Cùng một người ở cả hai tập làm điểm test đẹp giả.'},
+{t:'xu-ly',q:'Cột tuổi có các giá trị 10, 12, 13, 14, 90 (90 là nhập nhầm). Nên điền ô thiếu bằng giá trị nào để ít bị ảnh hưởng nhất?',o:['Trung vị (13)','Trung bình (27,8)','Giá trị lớn nhất (90)','Số 0'],a:[0],e:'Trung vị không bị ngoại lai 90 kéo lệch; trung bình bị kéo lên 27,8.'},
+{t:'xu-ly',q:'Một cột có trung bình 50, độ lệch chuẩn 10. Giá trị 65 có z-score bằng?',o:['1,5','15','0,65','6,5'],a:[0],e:'(65 − 50)/10 = 1,5.'},
+{t:'svm',q:'Khoảng cách từ điểm (3, 4) đến đường thẳng 3x + 4y = 0 là?',o:['5','25','7','1'],a:[0],e:'|3·3 + 4·4| / √(3² + 4²) = 25/5 = 5.'},
+{t:'svm',q:'Xóa một điểm KHÔNG phải vector hỗ trợ rồi huấn luyện lại SVM (dữ liệu tách được) thì?',o:['Ranh giới không đổi','Ranh giới luôn đổi','Lề luôn hẹp lại','Không huấn luyện được nữa'],a:[0],e:'Chỉ các vector hỗ trợ quyết định ranh giới.'},
+{t:'svm',q:'Tăng tham số C trong SVM lề mềm thì?',o:['Phạt điểm sai nặng hơn, lề hẹp hơn, dễ overfit hơn','Lề rộng hơn, chấp nhận nhiều điểm sai hơn','Mô hình luôn đơn giản hơn','Không ảnh hưởng gì'],a:[0],e:'C là mức phạt cho điểm vi phạm lề. C nhỏ thì ngược lại: lề rộng, chấp nhận vài điểm sai.'},
+{t:'svm',q:'Những phát biểu nào đúng về SVM?',o:['Chọn đường chia có lề lớn nhất','Có thể dùng kernel để tạo ranh giới cong','Nên chuẩn hóa đặc trưng trước','Mọi điểm dữ liệu đều ảnh hưởng ngang nhau tới ranh giới'],a:[0,1,2],e:'Chỉ các vector hỗ trợ quyết định ranh giới.'},
+{t:'svm',q:'Ranh giới SVM là w·x + b = 0 với w = (3, 4), đã chuẩn hóa để vector hỗ trợ có |w·x + b| = 1. Độ rộng lề (cả hai bên) là?',o:['0,4','0,2','5','2'],a:[0],e:'2/‖w‖ = 2/5 = 0,4.'},
+{t:'pca',q:'Thành phần chính thứ nhất của PCA là hướng mà dữ liệu?',o:['Có phương sai lớn nhất','Tách các lớp tốt nhất','Song song với trục x','Có phương sai nhỏ nhất'],a:[0],e:'PCA không nhìn nhãn, chỉ tìm hướng dữ liệu trải rộng nhất.'},
+{t:'pca',q:'Dữ liệu có 50 cột. Sau PCA giữ 5 thành phần chính, mỗi mẫu còn bao nhiêu số?',o:['5','50','45','250'],a:[0],e:'Mỗi mẫu được biểu diễn bằng 5 tọa độ trên 5 thành phần chính.'},
+{t:'pca',q:'Những phát biểu nào đúng về PCA?',o:['Là học không giám sát','Các thành phần chính vuông góc với nhau','Nên chuẩn hóa dữ liệu trước','Luôn làm mô hình phân loại chính xác hơn'],a:[0,1,2],e:'Bỏ bớt chiều có thể làm mất thông tin hữu ích cho việc phân loại.'},
+{t:'pca',q:'Ma trận hiệp phương sai của dữ liệu 2 chiều là [[3, 0], [0, 1]]. Thành phần chính thứ nhất giữ bao nhiêu % phương sai?',o:['75%','50%','25%','100%'],a:[0],e:'Trị riêng là 3 và 1. 3/(3 + 1) = 75%; hướng là trục x.'},
+{t:'rnn',q:'RNN có trạng thái ẩn 4 chiều, đầu vào 3 chiều: hₜ = tanh(W·hₜ₋₁ + U·xₜ + b). Tổng số tham số của W, U, b?',o:['32','28','16','48'],a:[0],e:'W: 4×4 = 16, U: 4×3 = 12, b: 4. Tổng 32.'},
+{t:'rnn',q:'Cho RNN đọc câu 100 từ thay vì 10 từ. Số tham số của RNN?',o:['Không đổi','Gấp 10 lần','Gấp 100 lần','Giảm đi'],a:[0],e:'Cùng W, U, b được dùng lại ở mọi bước.'},
+{t:'rnn',q:'Gradient đi ngược 20 bước, mỗi bước bị nhân thêm 0,5. Gradient còn khoảng bao nhiêu lần so với ban đầu?',o:['≈ 10⁻⁶ (gần như biến mất)','10','0,5','1'],a:[0],e:'0,5²⁰ ≈ 9,5 × 10⁻⁷: tiêu biến gradient.'},
+{t:'rnn',q:'Những phát biểu nào đúng?',o:['LSTM dùng các cổng để nhớ thông tin xa hơn','Cắt gradient (clipping) giúp chống bùng nổ gradient','RNN xử lý mọi vị trí trong câu song song như Transformer','RNN dùng chung trọng số ở mọi bước thời gian'],a:[0,1,3],e:'RNN phải chạy tuần tự vì hₜ cần hₜ₋₁.'},
+{t:'rnn',q:'Vì sao Transformer huấn luyện nhanh hơn RNN trên GPU?',o:['Attention xử lý mọi vị trí cùng lúc, không phải chờ bước trước','Transformer không có tham số','Transformer không cần dữ liệu','RNN không chạy được trên GPU'],a:[0],e:'RNN phải tính lần lượt h₁, h₂, h₃… nên khó song song hóa.'},
+{t:'python',q:'a = np.array([[1, 2, 3], [4, 5, 6]]). a.shape là?',o:['(2, 3)','(3, 2)','6','(6,)'],a:[0],e:'2 hàng, 3 cột.'},
+{t:'python',q:'Với a = np.array([[1, 2, 3], [4, 5, 6]]), a.mean(axis=0) là?',o:['[2.5, 3.5, 4.5]','[2, 5]','3.5','[6, 15]'],a:[0],e:'axis=0 là đi dọc theo hàng, tức trung bình từng cột: (1+4)/2, (2+5)/2, (3+6)/2.'},
+{t:'python',q:'Lệnh pandas nào đếm số ô thiếu ở mỗi cột?',o:['df.isnull().sum()','df.head()','df.shape','df.drop()'],a:[0],e:'isnull() đánh dấu ô thiếu là True, sum() đếm theo cột.'},
+{t:'python',q:'Cách chuẩn hóa ĐÚNG với scikit-learn?',o:['scaler.fit(X_train), rồi transform cả X_train và X_test','scaler.fit(X_test) rồi transform X_train','fit trên toàn bộ dữ liệu rồi mới chia train/test','Chỉ chuẩn hóa X_train, để nguyên X_test'],a:[0],e:'Thống kê chỉ học từ train; test phải được biến đổi giống hệt train.'},
+{t:'python',q:'Những việc nào nên làm trong 5 giờ Vòng 2?',o:['Làm mô hình mốc đơn giản và nộp sớm một bản','Tự chia tập validation để chấm','Cố định random_state','Bỏ qua bước xem dữ liệu để tiết kiệm thời gian'],a:[0,1,2],e:'Xem dữ liệu (ô thiếu, tỉ lệ lớp, kiểu cột) giúp tránh sai lầm lớn ngay từ đầu.'},
+{t:'python',q:'model.fit(X, y) trong scikit-learn làm gì?',o:['Huấn luyện mô hình trên dữ liệu X có nhãn y','Dự đoán nhãn cho X','Vẽ biểu đồ','Đọc file CSV'],a:[0],e:'Dự đoán là model.predict(X).'},
+{t:'overfit',q:'Mô hình có bias cao, variance thấp thường đang?',o:['Underfit: sai nhiều cả train lẫn test','Overfit','Hoàn hảo','Không huấn luyện được'],a:[0],e:'Bias cao: mô hình quá đơn giản. Variance cao: mô hình quá nhạy với dữ liệu train (overfit).'},
+{t:'danh-gia',q:'Diện tích dưới đường ROC (AUC) bằng 0,5 nghĩa là?',o:['Mô hình không hơn đoán ngẫu nhiên','Mô hình hoàn hảo','Mô hình luôn đoán sai','Precision bằng 0,5'],a:[0],e:'ROC vẽ TPR theo FPR khi đổi ngưỡng. AUC = 1 là hoàn hảo, 0,5 là như tung đồng xu.'},
+{t:'hoi-quy',q:'Hàm sigmoid σ(z) = 1/(1 + e^(−z)). σ(0) bằng?',o:['0,5','0','1','e'],a:[0],e:'1/(1 + 1) = 0,5: đúng ở ranh giới quyết định.'},
+{t:'hoi-quy',q:'Hồi quy logistic cho xác suất p = 0,8 với một ca có nhãn thật là 1. Cross-entropy (log loss) của ca này khoảng?',o:['0,22','0,8','0,2','1,6'],a:[0],e:'−ln(0,8) ≈ 0,223. Nếu đoán p gần 1 thì loss gần 0; đoán p gần 0 thì loss rất lớn.'},
+{t:'noron',q:'Nơ-ron z = w·x với x = 2, w = 3, hàm lỗi L = (z − 5)². Đạo hàm ∂L/∂w bằng?',o:['4','2','6','1'],a:[0],e:'Quy tắc chuỗi: ∂L/∂z = 2(z − 5) = 2(6 − 5) = 2, ∂z/∂w = x = 2. Nhân lại: 4.'},
+{t:'cay',q:'Random forest khác một cây quyết định ở chỗ nào?',o:['Nhiều cây, mỗi cây học trên mẫu lấy lại ngẫu nhiên và tập con đặc trưng ngẫu nhiên, rồi bỏ phiếu','Chỉ có một cây rất sâu','Không cần dữ liệu có nhãn','Huấn luyện bằng gradient descent'],a:[0],e:'Lấy mẫu có hoàn lại (bootstrap) và chọn ngẫu nhiên đặc trưng làm các cây khác nhau; bỏ phiếu giúp giảm phương sai.'}
 ];
 QB.forEach((q,i)=>q.i=i);
 const isCorrect=(q,sel)=>sel.length===q.a.length&&q.a.every(x=>sel.includes(x));
@@ -1102,6 +1203,157 @@ function sortGame(root,cards,bins){
   S.controls.append(btn('Làm lại từ đầu',()=>{ans={};draw();}));
   draw();
 }
+function demoPrep(root){
+  const S=shell(root); const r=mulberry32(77);
+  const mk=n=>Array.from({length:n},()=>{ const x=Math.round(145+r()*40), y=Math.round((2+r()*8)*10)/10; return {x,y,c:y>=7?1:0}; });
+  const tr=mk(40), te=mk(300);
+  const mean=a=>a.reduce((s,v)=>s+v,0)/a.length, sdv=a=>{ const m=mean(a); return Math.sqrt(mean(a.map(v=>(v-m)**2)))||1; };
+  const mx=mean(tr.map(p=>p.x)), sx=sdv(tr.map(p=>p.x)), my=mean(tr.map(p=>p.y)), sy=sdv(tr.map(p=>p.y));
+  let scaled=false, q={x:150,y:8.2};
+  const F=(p,sc)=>sc?[(p.x-mx)/sx,(p.y-my)/sy]:[p.x,p.y];
+  const near=(p,sc)=>{ const a=F(p,sc); return tr.map((t,i)=>{ const b=F(t,sc); return {i,d:(a[0]-b[0])**2+(a[1]-b[1])**2}; }).sort((u,v)=>u.d-v.d).slice(0,5); };
+  const pred=(p,sc)=>near(p,sc).reduce((s,e)=>s+tr[e.i].c,0)>=3?1:0;
+  const acc=sc=>te.filter(p=>pred(p,sc)===p.c).length/te.length;
+  const accRaw=acc(false), accSc=acc(true);
+  const o=makeCanvas(S.stage,{ratio:0.55,maxH:420,label:'Học sinh theo chiều cao và điểm toán, cùng 5 hàng xóm gần nhất'}); o.cv.style.cursor='crosshair';
+  const M=()=>scaled?worldEq(o,-2.3,2.3,-2.1,2.1,26):worldEq(o,140,190,0,10,26);
+  const P=p=>{ const m=M(), f=F(p,scaled); return [m.X(f[0]),m.Y(f[1])]; };
+  o.draw=()=>{ if(!o.w) return; const T=theme(), c=o.ctx, m=M(); paper(c,o.w,o.h,T);
+    const x0=scaled?-2.3:140, x1=scaled?2.3:190, y0=scaled?-2.1:0, y1=scaled?2.1:10;
+    c.strokeStyle=T.muted; c.lineWidth=1.2; seg2(c,m.X(x0),m.Y(y0),m.X(x1),m.Y(y0)); seg2(c,m.X(x0),m.Y(y0),m.X(x0),m.Y(y1));
+    c.fillStyle=T.muted; c.font=font(11,'bold'); c.textAlign='right'; c.textBaseline='bottom'; c.fillText(scaled?'z chiều cao →':'Chiều cao (cm) →',m.X(x1)-2,m.Y(y0)-4);
+    c.textAlign='left'; c.textBaseline='top'; c.fillText(scaled?'↑ z điểm toán':'↑ Điểm toán (0–10)',m.X(x0)+4,m.Y(y1)+2);
+    const nb=near(q,scaled), [qx,qy]=P(q);
+    nb.forEach(e=>{ const [x,y]=P(tr[e.i]); c.strokeStyle=alpha(T.c[tr[e.i].c],0.8); c.lineWidth=2; seg2(c,qx,qy,x,y); });
+    tr.forEach(p=>{ const [x,y]=P(p); mark(c,x,y,p.c,T,5.5); });
+    dot(c,qx,qy,12,T.surface,T.c[pred(q,scaled)],3.5); c.fillStyle=T.ink; c.font=font(13,'disp'); c.textAlign='center'; c.textBaseline='middle'; c.fillText('?',qx,qy+1);
+  };
+  const rP=chip('Dự đoán cho dấu ?',{big:true}), rA=chip('Đúng trên 300 bạn kiểm tra (chưa chuẩn hóa)'), rB=chip('Đúng trên 300 bạn kiểm tra (đã chuẩn hóa)');
+  S.reads.append(rP,rA,rB); rA.set(pct(accRaw,0)); rB.set(pct(accSc,0)); rA.tone(accRaw<accSc?'bad':null); rB.tone('good');
+  function upd(){ const k=pred(q,scaled); rP.set(k?'Vào đội tuyển ■':'Chưa vào ●');
+    S.note.textContent=scaled?'Đã chuẩn hóa: hai trục cùng thang đo, nên hàng xóm gần nhất là những bạn có điểm toán giống nhau. Điểm toán mới là thứ quyết định vào đội tuyển.':'Chưa chuẩn hóa: chiều cao chênh vài chục cm, điểm toán chỉ chênh vài điểm, nên "gần nhất" gần như chỉ xét chiều cao. Các hàng xóm có thể có điểm toán rất khác.';
+    o.draw(); }
+  S.controls.append(toggle('Chuẩn hóa z-score',false,v=>{scaled=v;upd();}),h('span',{class:'ctl'},'Nhóm: điểm toán ≥ 7 thì vào đội tuyển (■), dưới 7 là chưa vào (●).'));
+  o.cv.addEventListener('pointerdown',e=>{ const p=ptr(e,o.cv), m=M(); let x=m.ix(p.x), y=m.iy(p.y); if(scaled){ x=x*sx+mx; y=y*sy+my; } q={x:clamp(x,140,190),y:clamp(y,0,10)}; upd(); });
+  upd();
+  const sub=h('div',{class:'subdemo'}); root.append(sub); sub.append(h('h3',{class:'sub-h'},'Mỗi cột cần xử lý thế nào?'));
+  const box=h('div'); sub.append(box);
+  sortGame(box,[
+    {q:'Cột "tuổi" có 5% ô bị bỏ trống.',a:'fill',w:'Điền bằng trung vị hoặc trung bình, tính trên tập train.'},
+    {q:'Cột "tỉnh thành" gồm Hà Nội, Huế, Cần Thơ, dùng cho hồi quy logistic.',a:'onehot',w:'Cột chữ không có thứ tự: one-hot thành 3 cột 0/1.'},
+    {q:'Cột "thu nhập" tính bằng đồng (hàng triệu) và cột "số con" từ 0 đến 5, dùng với k-NN.',a:'scale',w:'Thang đo chênh nhau quá lớn: chuẩn hóa z-score hoặc min-max.'},
+    {q:'Cột "mã học sinh" (mỗi em một số khác nhau).',a:'drop',w:'Mã số không mang quy luật gì, chỉ giúp mô hình học thuộc.'},
+    {q:'Cột "đã được hoàn tiền" khi dự đoán "giao dịch có gian lận không".',a:'drop',w:'Thông tin này chỉ có SAU khi biết gian lận: rò rỉ dữ liệu.'},
+    {q:'Cột "điểm thi thử" để trống với các bạn vắng buổi thi thử.',a:'fill',w:'Điền ô thiếu (có thể thêm một cột 0/1 "có vắng thi" làm đặc trưng mới).'},
+    {q:'Cột "màu áo đồng phục" gồm đỏ, xanh, vàng.',a:'onehot',w:'Không đánh số 1, 2, 3 vì màu không có thứ tự.'},
+    {q:'Cột "chiều cao (cm)" và "cân nặng (kg)" dùng với SVM.',a:'scale',w:'SVM dựa vào khoảng cách nên các cột cần cùng thang đo.'}
+  ],[['fill','Điền ô thiếu'],['onehot','One-hot'],['scale','Chuẩn hóa'],['drop','Bỏ cột']]);
+}
+
+function demoSVM(root){
+  const S=shell(root); const r=mulberry32(19);
+  const gen=()=>{ const a=[]; while(a.length<14){ const x=3+randn(r)*0.95, y=6.4+randn(r)*0.95; if(x-y<-1.2&&x>0.4&&y<9.6) a.push({x,y,c:0}); } while(a.length<28){ const x=6.8+randn(r)*0.95, y=3.4+randn(r)*0.95; if(x-y>1.2&&x<9.6&&y>0.4) a.push({x,y,c:1}); } return a; };
+  const base=gen(); let pts=base.slice(), outlier=false, th=300, b=0.6;
+  const W=t=>[Math.cos(t*Math.PI/180),Math.sin(t*Math.PI/180)];
+  const marg=(t,bb)=>{ const w=W(t); return pts.map(p=>(p.c?1:-1)*(w[0]*p.x+w[1]*p.y-bb)); };
+  function best(list){ let bt=0,bb=0,bm=-Infinity; for(let t=0;t<360;t+=0.5){ const w=W(t); let lo=Infinity, hi=-Infinity; list.forEach(p=>{ const v=w[0]*p.x+w[1]*p.y; if(p.c) lo=Math.min(lo,v); else hi=Math.max(hi,v); }); const g=(lo-hi)/2; if(g>bm){ bm=g; bt=t; bb=(lo+hi)/2; } } return {t:bt,b:bb,m:bm}; }
+  let opt=best(pts);
+  const o=makeCanvas(S.stage,{ratio:0.62,maxH:460,label:'Hai nhóm điểm, đường chia và lề của SVM'});
+  const M=()=>worldEq(o,0,10,0,10,16);
+  o.draw=()=>{ if(!o.w) return; const T=theme(), c=o.ctx, m=M(), w=W(th), ms=marg(th,b), ok=ms.every(v=>v>0), mm=ok?Math.min(...ms):0; paper(c,o.w,o.h,T);
+    const line=(off,col,lw,dash)=>{ const p0=[w[0]*off,w[1]*off], d=[-w[1],w[0]]; c.save(); if(dash) c.setLineDash(dash); c.strokeStyle=col; c.lineWidth=lw; seg2(c,m.X(p0[0]-30*d[0]),m.Y(p0[1]-30*d[1]),m.X(p0[0]+30*d[0]),m.Y(p0[1]+30*d[1])); c.restore(); };
+    if(ok){ const p0=[w[0]*b,w[1]*b], d=[-w[1],w[0]]; c.save(); c.beginPath(); [[-1,-30],[-1,30],[1,30],[1,-30]].forEach(([s,k],i)=>{ const x=p0[0]+s*mm*w[0]+k*d[0], y=p0[1]+s*mm*w[1]+k*d[1]; i?c.lineTo(m.X(x),m.Y(y)):c.moveTo(m.X(x),m.Y(y)); }); c.closePath(); c.fillStyle=alpha(T.amber,0.14); c.fill(); c.restore();
+      line(b-mm,T.amber,1.6,[6,5]); line(b+mm,T.amber,1.6,[6,5]); }
+    line(b,T.red,3);
+    pts.forEach((p,i)=>{ const X=m.X(p.x), Y=m.Y(p.y); mark(c,X,Y,p.c,T,6.5); if(ms[i]<=0){ c.save(); c.setLineDash([3,3]); dot(c,X,Y,13,null,T.red,2.2); c.restore(); } else if(ok&&ms[i]<=mm+1e-6) dot(c,X,Y,12,null,T.ink,2.2); });
+  };
+  const rM=chip('Lề hiện tại (tới điểm gần nhất)',{big:true}), rE=chip('Số điểm sai phía'), rB=chip('Lề rộng nhất có thể');
+  S.reads.append(rM,rE,rB);
+  function upd(msg){ const ms=marg(th,b), bad=ms.filter(v=>v<=0).length, mm=bad?NaN:Math.min(...ms);
+    rM.set(bad?'— (còn điểm sai phía)':nf(mm,2)); rM.tone(!bad&&mm>=opt.m*0.97?'good':bad?'bad':null); rE.set(String(bad)); rE.tone(bad?'bad':'good');
+    rB.set(opt.m>0?nf(opt.m,2):(outlier?nf(best(base).m,2)+' (nếu bỏ qua điểm lạc)':'—'));
+    S.note.textContent=msg||(bad?'Còn điểm nằm sai phía đường đỏ (vòng đỏ nét đứt). Xoay hoặc dịch đường.':mm>=opt.m*0.97?'Gần như lề rộng nhất rồi! Các điểm khoanh đen là vector hỗ trợ.':'Đúng phía hết rồi. Vùng vàng là lề: thử làm nó rộng hơn.'); o.draw(); }
+  const sT=slider('Góc',{min:0,max:359,step:1,value:th,fmt:v=>v+'°'},v=>{th=v;upd();}), sB=slider('Dịch',{min:-10,max:10,step:0.05,value:b,fmt:v=>nf(v,2)},v=>{b=v;upd();});
+  S.controls.append(sT,sB,btn('Tìm lề rộng nhất',()=>{ let res=opt, msg;
+      if(opt.m<=0){ res=best(base); msg='Có điểm lạc nên không đường thẳng nào chia đúng hết. Lề mềm (C nhỏ): chấp nhận 1 điểm sai để có lề rộng cho số đông.'; }
+      else msg='Đây là đường có lề rộng nhất. Chỉ các điểm khoanh đen (vector hỗ trợ) quyết định nó.';
+      th=Math.round(res.t); b=Math.round(res.b*20)/20; const w=W(th); let lo=Infinity,hi=-Infinity; (opt.m>0?pts:base).forEach(p=>{ const v=w[0]*p.x+w[1]*p.y; if(p.c) lo=Math.min(lo,v); else hi=Math.max(hi,v); }); if(lo>hi) b=(lo+hi)/2;
+      sT.setV(th); sB.setV(b); upd(msg); },'btn primary'),
+    toggle('Thêm điểm lạc',false,v=>{ outlier=v; pts=v?base.concat([{x:6.6,y:3.9,c:0}]):base.slice(); opt=best(pts); upd(v?'Một điểm ● lọt vào giữa nhóm ■: dữ liệu không còn tách được bằng đường thẳng.':null); }));
+  upd();
+}
+
+function demoPCA(root){
+  const S=shell(root); const r=mulberry32(23); let pts=[];
+  for(let i=0;i<70;i++){ const t=randn(r)*1.5, u=randn(r)*0.5, a=Math.PI/6; pts.push({x:t*Math.cos(a)-u*Math.sin(a),y:t*Math.sin(a)+u*Math.cos(a)}); }
+  const mx=pts.reduce((s,p)=>s+p.x,0)/pts.length, my=pts.reduce((s,p)=>s+p.y,0)/pts.length; pts=pts.map(p=>({x:p.x-mx,y:p.y-my}));
+  const n=pts.length, cxx=pts.reduce((s,p)=>s+p.x*p.x,0)/n, cyy=pts.reduce((s,p)=>s+p.y*p.y,0)/n, cxy=pts.reduce((s,p)=>s+p.x*p.y,0)/n, tot=cxx+cyy;
+  const disc=Math.sqrt((cxx-cyy)**2+4*cxy*cxy), l1=(tot+disc)/2, l2=(tot-disc)/2;
+  let bestT=(0.5*Math.atan2(2*cxy,cxx-cyy)*180/Math.PI+180)%180;
+  let th=110, proj=true;
+  const vu=t=>{ const c=Math.cos(t*Math.PI/180), s=Math.sin(t*Math.PI/180); return cxx*c*c+2*cxy*c*s+cyy*s*s; };
+  const o=makeCanvas(S.stage,{ratio:0.6,maxH:440,label:'Đám điểm và trục chiếu của PCA'});
+  const M=()=>worldEq(o,-4.2,4.2,-3,3,14);
+  o.draw=()=>{ if(!o.w) return; const T=theme(), c=o.ctx, m=M(), u=[Math.cos(th*Math.PI/180),Math.sin(th*Math.PI/180)]; paper(c,o.w,o.h,T);
+    c.save(); c.setLineDash([6,5]); c.strokeStyle=T.muted; c.lineWidth=1.4; seg2(c,m.X(-10*-u[1]),m.Y(-10*u[0]),m.X(10*-u[1]),m.Y(10*u[0])); c.restore();
+    c.strokeStyle=T.accent; c.lineWidth=3; seg2(c,m.X(-10*u[0]),m.Y(-10*u[1]),m.X(10*u[0]),m.Y(10*u[1]));
+    pts.forEach(p=>{ const d=p.x*u[0]+p.y*u[1], qx=d*u[0], qy=d*u[1]; if(proj){ c.strokeStyle=alpha(T.pink||T.red,0.35); c.lineWidth=1; seg2(c,m.X(p.x),m.Y(p.y),m.X(qx),m.Y(qy)); dot(c,m.X(qx),m.Y(qy),3,T.accent); } dot(c,m.X(p.x),m.Y(p.y),4.5,T.ink,T.surface,1.2); });
+    label(c,'trục tím: giữ lại',m.X(3.4*u[0]),m.Y(3.4*u[1])-14,T,{align:'center',color:T.accent,maxW:o.w});
+  };
+  const rV=chip('Phương sai giữ lại trên trục tím',{big:true}), rO=chip('Trục vuông góc (nét đứt) giữ'), rE=chip('Trị riêng λ₁ và λ₂');
+  S.reads.append(rV,rO,rE); rE.set(`${nf(l1)} và ${nf(l2)}`);
+  function upd(msg){ const sh=vu(th)/tot; rV.set(pct(sh,1)); rO.set(pct(1-sh,1)); rV.tone(sh>=l1/tot-0.003?'good':null);
+    S.note.textContent=msg||(sh>=l1/tot-0.003?`Đây là thành phần chính thứ nhất: giữ ${pct(l1/tot,0)} phương sai. Chỉ cần 1 số (vị trí trên trục tím) thay cho 2 số mà mất rất ít thông tin.`:'Xoay trục tím để các điểm chiếu lên nó trải ra rộng nhất. Đoạn hồng là phần thông tin bị bỏ đi.'); o.draw(); }
+  const sT=slider('Góc trục',{min:0,max:179,step:1,value:th,fmt:v=>v+'°'},v=>{th=v;upd();});
+  S.controls.append(sT,btn('Tìm trục tốt nhất',()=>{ th=Math.round(bestT); sT.setV(th); upd(`Trục tốt nhất ở góc ${th}°: phương sai trên đó bằng trị riêng lớn nhất λ₁ = ${nf(l1)}, tức ${pct(l1/tot,0)} tổng phương sai ${nf(tot)}.`); },'btn primary'),toggle('Hiện đường chiếu',true,v=>{proj=v;o.draw();}));
+  upd();
+}
+
+function demoRNN(root){
+  const S=shell(root); const TOK=['Hôm','qua','trời','mưa','to','nên','đường','rất','trơn','lắm'];
+  let mode='rnn', Wv=0.8, f=0.95, k=TOK.length;
+  function run(){ const h=[]; let prev=0; TOK.forEach((_,t)=>{ const x=t===0?1:0; const v=mode==='rnn'?Math.tanh(Wv*prev+x):f*prev+x; h.push(v); prev=v; });
+    let g=1; for(let t=1;t<TOK.length;t++) g*=mode==='rnn'?Wv*(1-h[t]*h[t]):f; return {h,g}; }
+  const o=makeCanvas(S.stage,{ratio:0.36,maxH:280,minH:190,label:'Giá trị trạng thái ẩn sau mỗi từ'});
+  o.draw=()=>{ if(!o.w) return; const T=theme(), c=o.ctx, R=run(), n=TOK.length, cw=o.w/n, base=o.h-34, top=22; paper(c,o.w,o.h,T);
+    c.strokeStyle=T.line; c.lineWidth=1; seg2(c,0,base,o.w,base);
+    R.h.forEach((v,j)=>{ const x=j*cw, on=j<k; const bh=Math.max(0,Math.min(1,Math.abs(v)))*(base-top); const bw=Math.min(cw*0.56,46);
+      c.fillStyle=on?(j===0?T.coral||T.red:T.accent):alpha(T.muted,0.18); c.fillRect(x+cw/2-bw/2,base-(on?bh:0),bw,on?bh:0);
+      if(on){ c.fillStyle=T.ink; c.font=font(11,'monob'); c.textAlign='center'; c.textBaseline='bottom'; c.fillText(nf(v,2),x+cw/2,base-bh-3); }
+      c.fillStyle=j===k-1?T.accent:T.ink; c.font=font(o.w<480?11:13,'bold'); c.textAlign='center'; c.textBaseline='top'; c.fillText(TOK[j],x+cw/2,base+8); });
+    c.fillStyle=T.muted; c.font=font(11,'bold'); c.textAlign='left'; c.textBaseline='top'; c.fillText(mode==='rnn'?'hₜ = tanh(W·hₜ₋₁ + xₜ), chỉ từ đầu có x = 1':'cₜ = f·cₜ₋₁ + xₜ (cổng quên f), chỉ từ đầu có x = 1',6,4); };
+  const rH=chip('Còn nhớ từ đầu ở cuối câu',{big:true}), rG=chip('Gradient từ cuối câu về từ đầu',{big:true});
+  S.reads.append(rH,rG);
+  const fmtG=v=>v<0.001?v.toExponential(1).replace('e','×10^'):nf(v,3);
+  function upd(){ const R=run(); rH.set(nf(R.h[TOK.length-1],3)); rG.set(fmtG(R.g)); rG.tone(R.g<0.1?'bad':R.g>0.3?'good':'warn');
+    S.note.textContent=mode==='rnn'?(R.g<0.1?'Gradient gần như biến mất: khi huấn luyện, mô hình gần như không học được rằng từ đầu câu ảnh hưởng tới cuối câu.':'Gradient còn đi được về đầu câu. Nhưng để ý: tanh bão hòa nên mỗi bước vẫn nhân thêm một số nhỏ hơn 1; câu dài hơn thì vẫn tiêu biến.'):(R.g>0.3?'Cổng quên gần 1: trí nhớ và gradient đi xa được. Đó là ý tưởng của LSTM.':'Cổng quên nhỏ: LSTM chủ động quên thông tin cũ.'); o.draw(); }
+  const sW=slider('W',{min:0,max:1.5,step:0.05,value:Wv,fmt:v=>nf(v,2)},v=>{Wv=v;upd();}), sF=slider('Cổng quên f',{min:0,max:1,step:0.01,value:f,fmt:v=>nf(v,2)},v=>{f=v;upd();}); sF.hidden=true;
+  S.controls.append(seg([['rnn','RNN thường'],['lstm','Kiểu LSTM']],mode,v=>{mode=v;sW.hidden=v!=='rnn';sF.hidden=v==='rnn';upd();},'Loại mạng'),sW,sF,
+    btn('Đọc lại từ đầu',()=>{ k=1; upd(); },'btn'),btn('Đọc từ tiếp',()=>{ k=Math.min(TOK.length,k+1); upd(); },'btn primary'),btn('Đọc cả câu',()=>{ k=TOK.length; upd(); }));
+  upd();
+}
+
+function demoPython(root){
+  sortGame(root,[
+    {q:'np.zeros((3, 4))',a:'np',w:'Tạo mảng NumPy 3×4 toàn số 0.'},
+    {q:'a.reshape(2, 6)',a:'np',w:'Đổi hình dạng mảng NumPy (12 phần tử thành 2×6).'},
+    {q:'pd.read_csv("train.csv")',a:'pd',w:'Đọc file CSV thành bảng DataFrame của pandas.'},
+    {q:'df["tuoi"].fillna(df["tuoi"].median())',a:'pd',w:'Điền ô thiếu trong cột bằng trung vị.'},
+    {q:'df.groupby("lop")["diem"].mean()',a:'pd',w:'Điểm trung bình theo từng lớp.'},
+    {q:'plt.hist(df["diem"], bins=20)',a:'plt',w:'Vẽ biểu đồ tần suất của cột điểm.'},
+    {q:'plt.scatter(X[:, 0], X[:, 1], c=y)',a:'plt',w:'Vẽ các điểm, tô màu theo nhãn.'},
+    {q:'StandardScaler().fit_transform(X_train)',a:'sk',w:'Chuẩn hóa z-score của scikit-learn (fit trên train).'},
+    {q:'train_test_split(X, y, test_size=0.2)',a:'sk',w:'Tách tập train và validation.'},
+    {q:'RandomForestClassifier().fit(X, y)',a:'sk',w:'Huấn luyện random forest.'}
+  ],[['np','NumPy'],['pd','pandas'],['plt','matplotlib'],['sk','scikit-learn']]);
+  const sub=h('div',{class:'subdemo'}); root.append(sub);
+  sub.append(h('h3',{class:'sub-h'},'Gợi ý chia 5 giờ ở Vòng 2'),h('ol',{class:'steps'},
+    h('li',{},h('b',{},'0:00 – 0:30 · Đọc đề, xem dữ liệu'),'Chỉ số chấm điểm là gì? df.info(), df.describe(), df.isnull().sum(), tỉ lệ các lớp.'),
+    h('li',{},h('b',{},'0:30 – 1:00 · Mô hình mốc'),'Xử lý tối thiểu, hồi quy logistic hoặc random forest mặc định. Nộp ngay một bản.'),
+    h('li',{},h('b',{},'1:00 – 3:30 · Cải thiện'),'Điền ô thiếu, one-hot, tạo đặc trưng mới, thử gradient boosting. Kiểm định chéo để so sánh công bằng.'),
+    h('li',{},h('b',{},'3:30 – 5:00 · Chốt và nộp'),'Chọn mô hình tốt nhất trên validation, huấn luyện lại trên toàn bộ train, kiểm tra định dạng file rồi nộp.')));
+}
+
 function demoAIorNot(root){
   sortGame(root,[
     {q:'Máy tính bỏ túi tính 25 × 4.',a:'rule',w:'Phép nhân được lập trình sẵn, máy không học gì cả.'},
@@ -2173,16 +2425,11 @@ function showGate(start,msg){
   async function teacher(){ card.innerHTML=''; card.append(...head('Đang kiểm tra máy chủ…'));
     const st=await api('auth');
     card.innerHTML='';
-    if(st.status!==200){ card.append(...head(st.error==='not_configured'?'Máy chủ sổ điểm chưa được kết nối cơ sở dữ liệu. Thầy cô cần tạo Redis trong mục Storage của dự án trên Vercel.':'Chưa kết nối được máy chủ. Kiểm tra mạng rồi thử lại.'),h('div',{class:'gate-acts'},btn('Thử lại',teacher,'btn primary'),btn('Quay lại',choose,'btn ghost'))); return; }
+    if(st.status!==200){ card.append(...head(st.error==='not_configured'||st.error==='no_pin_env'?'Máy chủ sổ điểm chưa được cấu hình xong. Thầy cô kiểm tra lại dự án trên Vercel.':'Chưa kết nối được máy chủ. Kiểm tra mạng rồi thử lại.'),h('div',{class:'gate-acts'},btn('Thử lại',teacher,'btn primary'),btn('Quay lại',choose,'btn ghost'))); return; }
     const err=h('p',{class:'err',hidden:true}); const fail=t=>{ err.hidden=false; err.textContent=t; };
     const pin=(id,lbl)=>{ const i=h('input',{class:'input pin-in',id,type:'password',inputmode:'numeric',autocomplete:'off',maxlength:'12'}); return [i,h('div',{class:'field'},h('label',{for:id},lbl),i)]; };
     const ok=tok=>{ DB.role='teacher'; DB.ttok=tok; DB.teacherOn=true; save(); ROLE='teacher'; close(); if(location.hash==='#so-diem') refreshRole(); else { buildTabs(); buildSide(); location.hash='so-diem'; } };
     const errMsg=r=>r.error==='wrong_pin'?'Mã PIN không đúng.':r.error==='too_many'?'Nhập sai quá nhiều lần. Đợi 15 phút rồi thử lại.':r.error==='pin_format'?'Mã PIN cần 4–12 chữ số.':r.error==='exists'?'PIN đã được thiết lập. Hãy đăng nhập.':'Có lỗi, thử lại sau.';
-    if(!st.hasPin){ const [a,fa]=pin('g-p1','Đặt mã PIN (4–12 chữ số)'), [b,fb]=pin('g-p2','Nhập lại mã PIN');
-      const go=async()=>{ if(!/^\d{4,12}$/.test(a.value)) return fail('Mã PIN cần 4–12 chữ số.'); if(a.value!==b.value) return fail('Hai lần nhập không khớp.');
-        const r=await api('auth',{method:'POST',body:{action:'setup',pin:a.value}}); if(r.ok&&r.token) ok(r.token); else fail(errMsg(r)); };
-      b.addEventListener('keydown',e=>{ if(e.key==='Enter') go(); });
-      card.append(...head('Thiết lập lần đầu: đặt mã PIN giáo viên. Mã này dùng để đăng nhập trên mọi máy; học sinh không biết PIN sẽ không vào được sổ điểm.'),fa,fb,err,h('div',{class:'gate-acts'},btn('Lưu PIN và vào',go,'btn primary big'),btn('Quay lại',choose,'btn ghost'))); a.focus(); return; }
     const [a,fa]=pin('g-pin','Mã PIN giáo viên');
     const go=async()=>{ if(!a.value) return a.focus(); const r=await api('auth',{method:'POST',body:{action:'login',pin:a.value}}); if(r.ok&&r.token) ok(r.token); else { fail(errMsg(r)); a.select(); } };
     a.addEventListener('keydown',e=>{ if(e.key==='Enter') go(); });
@@ -2199,16 +2446,9 @@ function viewTeacher(main){
   const w=h('div',{class:'wrap',style:'max-width:620px'}); main.append(w); w.append(h('p',{class:'eyebrow'},'Tài khoản'),h('h1',{style:'font-size:clamp(1.9rem,4vw,2.6rem)'},'Giáo viên'));
   const card=h('div',{class:'card stack',style:'margin-top:18px'}); w.append(card);
   if(!isT()){ card.append(h('p',{style:'margin:0'},'Máy này đang ở giao diện học sinh.'),h('div',{class:'pk-tools'},btn('Đăng nhập giáo viên',()=>showGate('teacher'),'btn primary'))); return; }
-  card.append(h('p',{style:'margin:0'},'Máy này đang đăng nhập giáo viên. Điểm của học sinh tự gửi về máy chủ; thầy cô đăng nhập bằng PIN trên máy nào cũng xem được sổ điểm.'),
+  card.append(h('p',{style:'margin:0'},'Máy này đang đăng nhập giáo viên. Điểm của học sinh tự gửi về máy chủ; thầy cô đăng nhập bằng mã PIN giáo viên trên máy nào cũng xem được sổ điểm. Mã PIN cố định, không đổi được trên trang.'),
     h('div',{class:'pk-tools'},h('a',{class:'btn primary',href:'#so-diem'},'Mở sổ điểm'),h('a',{class:'btn',href:'#trinh-chieu'},'Trình chiếu'),btn('Đăng xuất',()=>{ DB.role=''; DB.ttok=''; DB.teacherOn=false; save(); ROLE='student'; location.hash='trang-chu'; refreshRole(); showGate(); },'btn ghost')));
-  const c2=h('div',{class:'card stack',style:'margin-top:14px'}); w.append(c2);
-  const pin=(id,lbl)=>{ const i=h('input',{class:'input pin-in',id,type:'password',inputmode:'numeric',autocomplete:'off',maxlength:'12'}); return [i,h('div',{class:'field'},h('label',{for:id},lbl),i)]; };
-  const [o,fo]=pin('t-old','PIN hiện tại'), [a,fa]=pin('t-new1','PIN mới (4–12 chữ số)'), [b,fb]=pin('t-new2','Nhập lại PIN mới'); const m=h('p',{class:'formula',style:'margin:0','aria-live':'polite'});
-  const go=async()=>{ if(!/^\d{4,12}$/.test(a.value)){ m.textContent='PIN mới cần 4–12 chữ số.'; return; } if(a.value!==b.value){ m.textContent='Hai lần nhập PIN mới không khớp.'; return; }
-    const r=await api('auth',{method:'POST',body:{action:'change',pin:o.value,newPin:a.value}});
-    if(r.ok&&r.token){ DB.ttok=r.token; save(); o.value=a.value=b.value=''; m.textContent='Đã đổi PIN. Các máy khác đang đăng nhập giáo viên sẽ phải đăng nhập lại.'; }
-    else m.textContent=r.error==='wrong_pin'?'PIN hiện tại không đúng.':r.error==='too_many'?'Sai quá nhiều lần, đợi 15 phút.':'Chưa đổi được, thử lại sau.'; };
-  c2.append(h('h2',{style:'font-size:1.2rem'},'Đổi mã PIN'),fo,fa,fb,h('div',{},btn('Đổi PIN',go,'btn primary')),m);
+
 }
 function viewTeacherLocal(main){
   const w=h('div',{class:'wrap',style:'max-width:620px'}); main.append(w); w.append(h('p',{class:'eyebrow'},'Chế độ giáo viên'),h('h1',{style:'font-size:clamp(1.9rem,4vw,2.6rem)'},'Giáo viên'));
