@@ -10,46 +10,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&family=Mali:wght@500;600&display=swap&subset=vietnamese">
 <style>
-/* Layout: vở ô li (light) / bảng đen (dark). Sidebar mục lục + vùng bài học; mỗi bài: ý tưởng → thí nghiệm → ghi nhớ → kiểm tra. */
+/* Layout: vở ô li, giao diện sáng. Sidebar mục lục + vùng bài học; mỗi bài: ý tưởng → thí nghiệm → ghi nhớ → kiểm tra. */
 :root{
-  --bg:#FFF7EC; --surface:#FFFFFF; --surface-2:#FFF2E0; --grid:#F5E7D3; --grid-strong:#E9D0AC; --line:#ECDDC7;
-  --ink:#22183F; --muted:#665C7D;
-  --accent:#5B34E0; --accent-ink:#FFFFFF; --accent-soft:#EEE8FF; --accent-deep:#3F1FB8;
-  --red:#D93246; --red-soft:#FFE5E8; --green:#0C8459; --green-soft:#DCF4E9; --amber:#A96500; --amber-soft:#FFF0D1;
-  --c1:#5B34E0; --c2:#EF6A1A; --c3:#0C8459; --c4:#C08600; --c5:#1F78DD;
-  --pink:#E2407F; --teal:#0C938F; --sky:#2B83F0; --sun:#FFC53D; --coral:#FF6A55;
-  --p0:#FF6A55; --pA:#2B83F0; --pB:#5B34E0; --pC:#0C938F; --pD:#E39400; --pE:#E2407F; --pF:#3A9A3E;
-  --shadow:0 1px 2px rgba(60,30,120,.06),0 6px 18px rgba(60,30,120,.07);
+  --bg:#F2F8FF; --surface:#FFFFFF; --surface-2:#EAF4FF; --grid:#E2EEFB; --grid-strong:#C5DBF4; --line:#D9E6F5;
+  --ink:#16294A; --muted:#55657F;
+  --accent:#1A6FE8; --accent-ink:#FFFFFF; --accent-soft:#E2EEFF; --accent-deep:#0E4FB0;
+  --red:#DC3545; --red-soft:#FFE7E9; --green:#13924B; --green-soft:#DDF6E7; --amber:#B06500; --amber-soft:#FFF3D0;
+  --c1:#7C4DEB; --c2:#F26B1D; --c3:#13924B; --c4:#C98A00; --c5:#1A6FE8; --viz-accent:#7C4DEB;
+  --pink:#E8458B; --teal:#0A9E95; --sky:#2E9BF5; --sun:#FFC21F; --coral:#FF6247; --lime:#7ACC29;
+  --p0:#E8503F; --pA:#1A6FE8; --pB:#7C4DEB; --pC:#0A8F87; --pD:#D86A00; --pE:#D63B7A; --pF:#23934A;
+  --shadow:0 1px 2px rgba(20,70,150,.06),0 6px 18px rgba(20,70,150,.08);
   --f-display:'Baloo 2','Be Vietnam Pro',system-ui,sans-serif;
   --f-body:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   --f-hand:'Mali','Be Vietnam Pro',system-ui,sans-serif;
   --f-mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
   --tb:60px;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#15122A; --surface:#1E1A3A; --surface-2:#262048; --grid:#2B2651; --grid-strong:#3D3570; --line:#363061;
-    --ink:#F4F0FF; --muted:#B5ADD2;
-    --accent:#A98CFF; --accent-ink:#170F35; --accent-soft:#2F2763; --accent-deep:#C9B8FF;
-    --red:#FF7B87; --red-soft:#3D2135; --green:#5ED8A2; --green-soft:#163A30; --amber:#FFC65C; --amber-soft:#3B301F;
-    --c1:#A98CFF; --c2:#FF9C5B; --c3:#5ED8A2; --c4:#FFC65C; --c5:#7CB7FF;
-    --pink:#FF7DB2; --teal:#4FD5CF; --sky:#7CB7FF; --sun:#FFD166; --coral:#FF8B79;
-    --p0:#FF8B79; --pA:#7CB7FF; --pB:#A98CFF; --pC:#4FD5CF; --pD:#FFC65C; --pE:#FF7DB2; --pF:#7DD87F;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.25);
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#15122A; --surface:#1E1A3A; --surface-2:#262048; --grid:#2B2651; --grid-strong:#3D3570; --line:#363061;
-  --ink:#F4F0FF; --muted:#B5ADD2;
-  --accent:#A98CFF; --accent-ink:#170F35; --accent-soft:#2F2763; --accent-deep:#C9B8FF;
-  --red:#FF7B87; --red-soft:#3D2135; --green:#5ED8A2; --green-soft:#163A30; --amber:#FFC65C; --amber-soft:#3B301F;
-  --c1:#A98CFF; --c2:#FF9C5B; --c3:#5ED8A2; --c4:#FFC65C; --c5:#7CB7FF;
-  --pink:#FF7DB2; --teal:#4FD5CF; --sky:#7CB7FF; --sun:#FFD166; --coral:#FF8B79;
-  --p0:#FF8B79; --pA:#7CB7FF; --pB:#A98CFF; --pC:#4FD5CF; --pD:#FFC65C; --pE:#FF7DB2; --pF:#7DD87F;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.25);
-  color-scheme:dark;
-}
+/* Always the bright theme: young students get the same fresh look whatever their device setting. */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -508,9 +486,9 @@ textarea.input{min-height:110px;resize:vertical;font-family:var(--f-mono);font-s
 /* ===== v2: giao diện tươi, chữ rõ ===== */
 body{font-size:16.5px;line-height:1.65;letter-spacing:.003em}
 h1,h2,h3{letter-spacing:-.005em}
-.topbar{box-shadow:0 1px 0 var(--line),0 4px 14px rgba(60,30,120,.05);border-bottom:0}
-.topbar::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:3px;background:linear-gradient(90deg,var(--coral),var(--sun),var(--teal),var(--sky),var(--accent),var(--pink))}
-.brand b{background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.topbar{box-shadow:0 1px 0 var(--line),0 4px 14px rgba(20,70,150,.06);border-bottom:0}
+.topbar::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:4px;background:linear-gradient(90deg,var(--sky),var(--teal),var(--lime),var(--sun),var(--coral),var(--pink))}
+.brand b{background:linear-gradient(90deg,var(--accent),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
 .tab{border-radius:10px;font-weight:600}
 .tab[aria-current="page"]{color:var(--accent-ink);background:var(--accent)}
 .side{background:var(--surface)}
@@ -539,14 +517,14 @@ h1,h2,h3{letter-spacing:-.005em}
 .qnum{font-family:var(--f-body);font-weight:800}
 .opt{border-radius:14px;font-size:1.02rem}
 .qtext{font-size:1.14rem;line-height:1.55}
-.score{background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.score{background:linear-gradient(90deg,var(--accent),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
 /* home */
 .hero{border:0;border-radius:24px;padding:clamp(22px,4vw,40px);background:
   radial-gradient(420px 260px at 92% 8%,color-mix(in srgb,var(--sun) 38%,transparent),transparent 70%),
   radial-gradient(380px 260px at 6% 100%,color-mix(in srgb,var(--sky) 26%,transparent),transparent 70%),
-  radial-gradient(300px 220px at 60% 110%,color-mix(in srgb,var(--pink) 22%,transparent),transparent 70%),var(--surface);box-shadow:var(--shadow)}
+  radial-gradient(300px 220px at 60% 110%,color-mix(in srgb,var(--lime) 24%,transparent),transparent 70%),var(--surface);box-shadow:var(--shadow)}
 .hero::before{display:none}
-.hero-title span{background:linear-gradient(90deg,var(--accent),var(--pink) 60%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-title span{background:linear-gradient(90deg,var(--accent),var(--teal) 55%,var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-hand{font-family:var(--f-hand);color:var(--pink);font-weight:600;font-size:1.25rem}
 @media (max-width:520px){.hero{padding:20px 18px}}
 .tile{border:0;position:relative;overflow:hidden;padding:16px 18px 16px 22px}
@@ -568,11 +546,11 @@ h1,h2,h3{letter-spacing:-.005em}
 /* role gate */
 .gate{position:fixed;inset:0;z-index:100;overflow:auto;display:grid;place-items:center;padding:calc(20px + env(safe-area-inset-top,0px)) 16px calc(20px + env(safe-area-inset-bottom,0px));background:
   radial-gradient(600px 400px at 10% 10%,color-mix(in srgb,var(--sun) 35%,transparent),transparent 70%),
-  radial-gradient(600px 420px at 95% 20%,color-mix(in srgb,var(--pink) 25%,transparent),transparent 70%),
+  radial-gradient(600px 420px at 95% 20%,color-mix(in srgb,var(--lime) 24%,transparent),transparent 70%),
   radial-gradient(700px 480px at 50% 110%,color-mix(in srgb,var(--sky) 28%,transparent),transparent 70%),var(--bg)}
-.gate-card{width:min(100%,560px);background:var(--surface);border-radius:26px;box-shadow:0 20px 60px rgba(40,20,90,.18);padding:clamp(22px,5vw,36px);display:grid;gap:16px}
+.gate-card{width:min(100%,560px);background:var(--surface);border-radius:26px;box-shadow:0 20px 60px rgba(20,70,150,.18);padding:clamp(22px,5vw,36px);display:grid;gap:16px}
 .gate-card h1{font-size:clamp(1.8rem,5vw,2.4rem);font-weight:800}
-.gate-card h1 span{background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gate-card h1 span{background:linear-gradient(90deg,var(--accent),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
 .gate-card p{margin:0;color:var(--muted)}
 .who{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 @media (max-width:440px){.who{grid-template-columns:minmax(0,1fr)}}
@@ -670,7 +648,7 @@ if(document.fonts&&document.fonts.ready) document.fonts.ready.then(redrawAll);
 
 /* theme + canvas helpers */
 function theme(){ const cs=getComputedStyle(document.documentElement); const g=n=>cs.getPropertyValue('--'+n).trim();
-  return {bg:g('bg'),surface:g('surface'),surface2:g('surface-2'),grid:g('grid'),gridS:g('grid-strong'),line:g('line'),ink:g('ink'),muted:g('muted'),accent:g('accent'),accentInk:g('accent-ink'),red:g('red'),green:g('green'),amber:g('amber'),c:[g('c1'),g('c2'),g('c3'),g('c4'),g('c5')]}; }
+  return {bg:g('bg'),surface:g('surface'),surface2:g('surface-2'),grid:g('grid'),gridS:g('grid-strong'),line:g('line'),ink:g('ink'),muted:g('muted'),accent:g('viz-accent')||g('accent'),accentInk:g('accent-ink'),red:g('red'),green:g('green'),amber:g('amber'),c:[g('c1'),g('c2'),g('c3'),g('c4'),g('c5')]}; }
 function alpha(c,a){ c=(c||'').trim(); if(c[0]==='#'){ let x=c.slice(1); if(x.length===3) x=x.split('').map(q=>q+q).join(''); const n=parseInt(x,16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; } return c; }
 const FF={body:"'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', sans-serif",mono:"'JetBrains Mono', ui-monospace, Consolas, monospace",hand:"'Mali', 'Be Vietnam Pro', sans-serif",disp:"'Baloo 2', 'Be Vietnam Pro', sans-serif"};
 function font(sz,k){ switch(k){ case 'bold':return `600 ${sz}px ${FF.body}`; case 'mono':return `${sz}px ${FF.mono}`; case 'monob':return `600 ${sz}px ${FF.mono}`; case 'hand':return `${sz}px ${FF.hand}`; case 'disp':return `700 ${sz}px ${FF.disp}`; default:return `${sz}px ${FF.body}`; } }
