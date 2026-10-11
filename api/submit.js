@@ -16,8 +16,8 @@ module.exports = async (req, res) => {
     const bits = String(b.bits || '');
     const cid = String(b.cid || '').slice(0, 40);
     if (!name) return L.send(res, 400, { error: 'name' });
-    if (!/^AI-[0-9A-Z]{1,12}$/.test(code)) return L.send(res, 400, { error: 'code' });
-    if (!/^[01]{1,63}$/.test(bits)) return L.send(res, 400, { error: 'bits' });
+    if (!/^(AI|TT|TN)-[0-9A-Z]{1,12}$/.test(code)) return L.send(res, 400, { error: 'code' });
+    if (!/^[01]{1,120}$/.test(bits)) return L.send(res, 400, { error: 'bits' });
     if (!/^[A-Za-z0-9_-]{6,40}$/.test(cid)) return L.send(res, 400, { error: 'cid' });
 
     const now = Date.now();
